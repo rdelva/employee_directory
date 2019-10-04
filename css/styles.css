@@ -17,14 +17,39 @@ body {
 
 h1 {
 	text-transform: uppercase;
+	font-size:1em;
 }
 
-#directory {
+#directory ul {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	
+	justify-content: space-between;
  	
 }
 
 .employeeList li {
 	margin:10px;
+	border: solid 1px #dfdfdf;
+	width:100%;
+	border-radius: 10px;
+	padding:10px;
+	display: flex;
+	flex-direction: 
+	flex-wrap:wrap;
+}
+
+.employeeList img {
+	border-radius: 50%;
+	max-width:100%;
+	width: 100px;
+}
+
+.employeeInfo {
+	margin-left:10px;
+}
+
+.employeeInfo .name {
+	font-weight: bold;
 }

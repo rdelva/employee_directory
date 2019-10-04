@@ -12,8 +12,10 @@ xhr.onreadystatechange = function() {
 			
 				statusHTML += "<li>"; 
 				statusHTML += "<img class='photo' src=" + employees.results[i].picture.large + ">"; 
+				statusHTML += "<div class='employeeInfo'>"; 
 				statusHTML += "<div class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</div>";				
-				statusHTML += "<div class='email'>" +  employees.results[i].email + "</div>";
+				statusHTML += "<div class='email'>" +  employees.results[i].email + "</div>"
+				statusHTML += "</div>";
 				statusHTML += "</li>"; 
 			}
 
