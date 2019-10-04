@@ -4,15 +4,21 @@
 	box-sizing: border-box;
 }
 
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-color: #4a4a4a;
+	background: #fcfcfc;
+}
+
 .wrapper {
 	margin: 0 auto;
-	width:90%;
+	width: 90%;
 }
 
 h1 {
 	text-transform: uppercase;
 }
 
-.directory {
- 	background: #fcfcfc;
+#directory {
+ 	
 }
