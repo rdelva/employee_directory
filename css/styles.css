@@ -73,13 +73,28 @@ a img {
 	margin-top:5px;
 }
 
-/*
+
 @media (min-width: 768px){
+
+	#directory  {
+		
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between; 	
+	}
+
 	a  {
 
 		width:45%;
 
 	}
+
+	a img {
+	
+	width:100px;
+	height:100px;
+	
+}
 
 }
 
@@ -87,8 +102,8 @@ a img {
 @media (min-width: 1024px){
 	a {
 
-		width:45%;
+		width:33%;
 
 	}
 
-}*/
+}
