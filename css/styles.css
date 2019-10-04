@@ -20,5 +20,11 @@ h1 {
 }
 
 #directory {
+	display: flex;
+	flex-direction: row;
  	
+}
+
+.employeeList li {
+	margin:10px;
 }
