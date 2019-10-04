@@ -12,52 +12,55 @@ body {
 .container {
 	width: 100%;
 
+
 }
 .wrapper {
 	margin: 0 auto;
-	width: 98%;
+	width: 98%;	
 }
 
 h1 {
 	text-transform: uppercase;
-	font-size:1em;
-	text-align: center;
+	font-size:1em;	
 }
 
-#directory ul {
+#directory  {
 	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	
-	justify-content: space-between;
+	flex-direction: column;
  	
 }
 
-.employeeList li {
-	margin:10px;
+
+
+a  {
+	margin:10px 0;
 	border: solid 1px #dfdfdf;
 	width:100%;
 	border-radius: 10px;
-	padding:10px;
+	padding:5px;
 	display: flex;
-	flex-direction: 
-	flex-wrap:wrap;
+	flex-direction: row;
+	flex-wrap:nowrap;
+	height:145px;
 }
 
-.employeeList li:hover {
+a:hover {
 	border: solid 1px #4a4a4a;
 
 }
 
-.employeeList img {
+a img {
 	border-radius: 50%;
 	max-width:100%;
-	width: 100px;
+	width:95px;
+	height:95px;
+	
 }
 
 .employeeInfo {
-	margin-left:10px;
+	
 	padding-top:15px;
+	padding-left: 5px;
 }
 
 .employeeInfo .name {
@@ -70,12 +73,22 @@ h1 {
 	margin-top:5px;
 }
 
-
+/*
 @media (min-width: 768px){
-	.employeeList li {
+	a  {
 
 		width:45%;
 
 	}
 
 }
+
+
+@media (min-width: 1024px){
+	a {
+
+		width:45%;
+
+	}
+
+}*/

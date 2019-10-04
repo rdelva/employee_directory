@@ -5,22 +5,22 @@ xhr.onreadystatechange = function() {
 	if(xhr.readyState === 4 && xhr.status === 200) {
 
 			let employees = JSON.parse(xhr.responseText);
-			let  statusHTML = '<ul class="employeeList">';
+			let  statusHTML = '';
 			console.log(employees.length);
 
 			for(var i=0; i < employees.results.length; i++ ){
 			
-				statusHTML += "<li>"; 
+				statusHTML += "<a>"; 
 				statusHTML += "<img class='photo' src=" + employees.results[i].picture.large + ">"; 
 				statusHTML += "<div class='employeeInfo'>"; 
 				statusHTML += "<div class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</div>";				
 				statusHTML += "<div class='email'>" +  employees.results[i].email + "</div>";
 				statusHTML += "<div class='city'>" +  employees.results[i].location.city + "</div>";
 				statusHTML += "</div>";
-				statusHTML += "</li>"; 
+				statusHTML += "</a>"; 
 			}
 
-			statusHTML += '</ul>';
+			
 			document.getElementById('directory').innerHTML = statusHTML;
 
 
