@@ -48,8 +48,16 @@ h1 {
 
 .employeeInfo {
 	margin-left:10px;
+	padding-top:15px;
 }
 
 .employeeInfo .name {
 	font-weight: bold;
 }
+
+.employeeInfo .email,.employeeInfo .city  {
+	font-size: .80em;
+	color:#b2b5b8;
+	margin-top:5px;
+}
+
