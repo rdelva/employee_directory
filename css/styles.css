@@ -9,15 +9,19 @@ body {
 	color: #4a4a4a;
 	background: #fcfcfc;
 }
+.container {
+	width: 100%;
 
+}
 .wrapper {
 	margin: 0 auto;
-	width: 90%;
+	width: 98%;
 }
 
 h1 {
 	text-transform: uppercase;
 	font-size:1em;
+	text-align: center;
 }
 
 #directory ul {
@@ -40,6 +44,11 @@ h1 {
 	flex-wrap:wrap;
 }
 
+.employeeList li:hover {
+	border: solid 1px #4a4a4a;
+
+}
+
 .employeeList img {
 	border-radius: 50%;
 	max-width:100%;
@@ -60,4 +69,5 @@ h1 {
 	color:#b2b5b8;
 	margin-top:5px;
 }
+
 
