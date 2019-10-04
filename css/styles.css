@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+
 * {
 	box-sizing: border-box;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width:90%;
+}
+
+h1 {
+	text-transform: uppercase;
+}
+
+.directory {
+ 	background: #fcfcfc;
 }
