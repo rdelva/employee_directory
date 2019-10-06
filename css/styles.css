@@ -27,6 +27,7 @@ h1 {
 #directory  {
 	display: flex;
 	flex-direction: column;
+	z-index:-1000;
  	
 }
 
@@ -42,6 +43,11 @@ a  {
 	flex-direction: row;
 	flex-wrap:nowrap;
 	height:145px;
+	text-decoration: none;
+}
+
+a:link, a:active, a:visited {
+	color: #4a4a4a;
 }
 
 a:hover {
@@ -73,6 +79,9 @@ a img {
 	margin-top:5px;
 }
 
+.moreEmpInfo {
+	display: none;
+}
 
 @media (min-width: 768px){
 
@@ -89,21 +98,21 @@ a img {
 
 	}
 
-	a img {
-	
-	width:100px;
-	height:100px;
-	
-}
+	a img {	
+		width:100px;
+		height:100px;		
+	}
 
 }
 
 
 @media (min-width: 1024px){
+	.wrapper {
+		max-width: 1024px;
+	}
+
 	a {
-
 		width:33%;
-
 	}
 
 }
