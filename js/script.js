@@ -12,11 +12,13 @@ xhr.onreadystatechange = function() {
 			for(var i=0; i < employees.results.length; i++ ){
 			
 				statusHTML += "<a class='lightbox' href=" +"#"+ employees.results[i].login.username + ">"; 
-				statusHTML += "<img class='photo' src=" + employees.results[i].picture.large + ">"; 
+				statusHTML += "<div class='card'>";
+				statusHTML += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
 				statusHTML += "<div class='employeeInfo'>"; 
-				statusHTML += "<div class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</div>";				
-				statusHTML += "<div class='email'>" +  employees.results[i].email + "</div>";
-				statusHTML += "<div class='city'>" +  employees.results[i].location.city + "</div>";
+				statusHTML += "<h2 class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</h2>";				
+				statusHTML += "<p class='email'>" +  employees.results[i].email + "</p>";
+				statusHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";
+				statusHTML += "</div>";
 				statusHTML += "</div>";
 				statusHTML += "</a>"; 
 
