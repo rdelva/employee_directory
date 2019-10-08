@@ -6,9 +6,69 @@
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	position: relative;
 	color: #4a4a4a;
 	background: #fcfcfc;
 }
+
+.overlay {
+	position: absolute;;
+	height: 100%;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background: rgba(100, 100, 100, 0.4);
+}
+
+.modal {
+	width: 375px;
+	margin: 15% auto auto;
+	position: relative;
+	
+	background: #fff;
+	border: 1px solid #778;
+	border-radius: 5px;
+	padding: 30px 20px;
+}
+
+.modal-content {
+	text-align: center;
+	
+	margin:20px 0;
+
+}
+.modal-content p {
+
+	font-size: .75em;
+	color: #b2b5b8;
+
+}
+
+.modal-content hr {
+	width: 80%;
+}
+
+.modal-content .avatar {
+	justify-content: center;
+
+}
+
+.modal-close {
+	background-color:#fff;
+	border:0px;
+	position: absolute;
+	right: 15px;
+	top: 5px;
+	cursor: pointer;
+
+}
+
+.hidden {
+	display: none;
+}
+
+
 .container {
 	width: 100%;
 
@@ -97,6 +157,9 @@ p{
 .moreEmpInfo {
 	display: none;
 }
+
+
+
 
 @media (min-width: 768px){
 

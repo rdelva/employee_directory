@@ -1,3 +1,5 @@
+
+
 //Establish ajax connection
 
 const  xhr = new XMLHttpRequest();
@@ -7,11 +9,11 @@ xhr.onreadystatechange = function() {
 
 			let employees = JSON.parse(xhr.responseText);
 			let  statusHTML = '';
-			
+			let  modalHTML = '';
 
-			for(var i=0; i < employees.results.length; i++ ){
+		for(var i=0; i < employees.results.length; i++ ){
 			
-				statusHTML += "<a class='lightbox' href=" +"#"+ employees.results[i].login.username + ">"; 
+				statusHTML += `<a class="lightbox employeeCard" href="#${employees.results[i].login.username}">`; 
 				statusHTML += "<div class='card'>";
 				statusHTML += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
 				statusHTML += "<div class='employeeInfo'>"; 
@@ -20,14 +22,39 @@ xhr.onreadystatechange = function() {
 				statusHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";
 				statusHTML += "</div>";
 				statusHTML += "</div>";
-				statusHTML += "</a>"; 
-
-				
+				statusHTML += "</a>"; 		
 			
 			}
-
 			
 			document.getElementById('directory').innerHTML = statusHTML;
+
+
+
+			function displayModal (){
+
+
+			}
+
+			let overlay = document.querySelector('overlay');
+			let directory = document.querySelector('#directory');
+			let employeeCard = document.querySelectorAll('employeeCard');
+			let hidden = document.querySelector('.hidden');
+			console.log(directory);
+
+			directory.addEventListener('click', function(e){
+
+
+				if (e.target.tagName == "A") {				
+					console.log('Hi');
+					console.log(e.target.getAttribute('href'));
+					console.log(hidden);
+					hidden.style.display = "block";
+				}
+			});
+
+
+
+			displayModal();
 
 
 
@@ -41,18 +68,3 @@ xhr.onreadystatechange = function() {
 xhr.open('GET', 'https://randomuser.me/api?results=12&?nat=us');
 xhr.send();
 
-/*$('.moreEmpInfo').hide();*/
-
-$('.lightBox').click(function(){
-
-	alert('Hi');
-
-});
-/*
- $(document).ready(function() {
-
-
-        $('.lightbox').lightBox(); 
-        console.log('hi');
-     });
-*/
