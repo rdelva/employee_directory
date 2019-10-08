@@ -23,16 +23,33 @@ xhr.onreadystatechange = function() {
 				statusHTML += "</div>";
 				statusHTML += "</div>";
 				statusHTML += "</a>"; 		
+
+				modalHTML += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
+				modalHTML += "<h2 class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</h2>";				
+				modalHTML += "<p class='email'>" +  employees.results[i].email + "</p>";
+				modalHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";				
+				modalHTML += "<hr>";
+				modalHTML += "<p>" +  employees.results[i].phone + "</p>";		
+				modalHTML += `<p class=address> ${employees.results[i].location.street.number} ${employees.results[i].location.street.name}, ${employees.results[i].location.city},   ${employees.results[i].location.postcode}  </p>`;
+
+				let dateConvert = new Date(employees.results[i].dob.date);
+				//console.log(dateConvert.getMonth());
+				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;
+
+
+				displayModal(modalHTML);
 			
 			}
 			
 			document.getElementById('directory').innerHTML = statusHTML;
+			
 
 
 
-			function displayModal (){
 
+			function displayModal (modalHTML){
 
+				console.log(modalHTML);
 			}
 
 			let overlay = document.querySelector('overlay');
