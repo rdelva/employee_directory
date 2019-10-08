@@ -39,19 +39,20 @@ xhr.onreadystatechange = function() {
 			let directory = document.querySelector('#directory');
 			let employeeCard = document.querySelectorAll('employeeCard');
 			let hidden = document.querySelector('.hidden');
+			let modalClose = document.querySelector('.modal-close');
 			console.log(directory);
 
 			directory.addEventListener('click', function(e){
-
-
 				if (e.target.tagName == "A") {				
-					console.log('Hi');
-					console.log(e.target.getAttribute('href'));
-					console.log(hidden);
+					console.log(e.target.getAttribute('href'));				
 					hidden.style.display = "block";
 				}
 			});
 
+			modalClose.addEventListener('click', function(e){
+				hidden.style.display = 'none';
+
+			});
 
 
 			displayModal();
