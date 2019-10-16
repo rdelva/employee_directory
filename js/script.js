@@ -1,4 +1,12 @@
+/*
+1. Pull Data from API to build out cards
+2. Select Card and grab the id number
+3. bA
 
+
+
+
+*/
 
 //Establish ajax connection
 
@@ -34,48 +42,15 @@ xhr.onreadystatechange = function() {
 
 				let dateConvert = new Date(employees.results[i].dob.date);
 				//console.log(dateConvert.getMonth());
-				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;
+				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;	
 
-
-				displayModal(modalHTML);
-			
+					
 			}
-			
+
+			displayModal(employees);	
 			document.getElementById('directory').innerHTML = statusHTML;
+
 			
-
-
-
-
-			function displayModal (modalHTML){
-
-				console.log(modalHTML);
-			}
-
-			let overlay = document.querySelector('overlay');
-			let directory = document.querySelector('#directory');
-			let employeeCard = document.querySelectorAll('employeeCard');
-			let hidden = document.querySelector('.hidden');
-			let modalClose = document.querySelector('.modal-close');
-			console.log(directory);
-
-			directory.addEventListener('click', function(e){
-				if (e.target.tagName == "A") {				
-					console.log(e.target.getAttribute('href'));				
-					hidden.style.display = "block";
-				}
-			});
-
-			modalClose.addEventListener('click', function(e){
-				hidden.style.display = 'none';
-
-			});
-
-
-			displayModal();
-
-
-
 
 	} else {
 		console.log(xhr.statusText);
@@ -86,3 +61,42 @@ xhr.onreadystatechange = function() {
 xhr.open('GET', 'https://randomuser.me/api?results=12&?nat=us');
 xhr.send();
 
+
+
+		
+
+			let overlay = document.querySelector('overlay');
+			let directory = document.querySelector('#directory');
+			let employeeCard = document.querySelectorAll('employeeCard');
+			let hidden = document.querySelector('.hidden');
+			let modalClose = document.querySelector('.modal-close');
+			let cardClicked;
+		
+			directory.addEventListener('click', function(e){
+				if (e.target.tagName == "A") {				
+					//console.log(e.target.getAttribute('href'));				
+					hidden.style.display = "block";
+				 	cardClicked  = e.target.getAttribute('href');					
+					displayModal(null, cardClicked);
+				}
+			});
+
+
+			modalClose.addEventListener('click', function(e){
+				hidden.style.display = 'none';
+			});
+
+
+			function displayModal(employees, cardClicked){
+			
+				console.log(`Test ${cardClicked}`);
+				console.log(employees);
+
+				for (let i=0; i < employees.length; i++  ){
+					console.log(modalHTML);
+				}
+
+
+			}
+
+			
