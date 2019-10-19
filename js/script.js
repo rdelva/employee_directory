@@ -77,7 +77,7 @@ xhr.send();
 					//console.log(e.target.getAttribute('href'));				
 					hidden.style.display = "block";
 				 	cardClicked  = e.target.getAttribute('href');					
-					displayModal(null, cardClicked);
+					displayModal(cardClicked);
 				}
 			});
 
