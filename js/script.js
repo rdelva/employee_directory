@@ -13,15 +13,10 @@ function  setupDirectory() {
 				let  statusHTML = '';
 				
 
-				//console.log(employees);
-				console.log(employees.results);
-
-				//let {employees:'results'}  = modalList;
-				//console.log(modalList);
 
 			for(var i=0; i < employees.results.length; i++ ){
 				
-					statusHTML += `<a class="lightbox employeeCard" href="#${employees.results[i].login.username}">`; 
+					statusHTML += `<a class="lightbox employeeCard" href="#${employees.results[i].login.username}" id="${employees.results[i].login.username}">`; 
 					statusHTML += "<div class='card'>";
 					statusHTML += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
 					statusHTML += "<div class='employeeInfo'>"; 
@@ -37,7 +32,7 @@ function  setupDirectory() {
 						
 			}// end of for loop for employees
 
-			displayModal(employees, null);	
+			displayModalWindow(employees);	
 			document.getElementById('directory').innerHTML = statusHTML;
 
 				
@@ -56,7 +51,7 @@ function  setupDirectory() {
 
 
 
-function displayModalWindow() {
+function displayModalWindow(employees) {
 
 
 	let directory = document.querySelector('#directory');
@@ -71,11 +66,9 @@ function displayModalWindow() {
 		
 
 		if (e.target.tagName == "A") {				
-			//console.log(e.target.getAttribute('href'));				
-			hidden.style.display = "block";
-			cardClicked  = e.target.getAttribute('href');
-
-			displayModal(null, cardClicked);
+			hidden.style.display = "block";			
+			cardClicked  = e.target.id;
+			displayModal(employees, cardClicked);
 				
 		}
 	});
@@ -96,22 +89,24 @@ function displayModalWindow() {
 
 
 
-function displayModal(employees, cardClicked){
-			
-	console.log(`Test ${cardClicked}`);
-	let  modalHTML = employees;	
-	console.log(employees);
+function displayModal(employees, cardClicked){	
+	
 
 	//look for the the href
 
-	for(let i = 0; i < employees.results.length; i++){
+
+let modalHTML = "";
+	if( employees != undefined && cardClicked != undefined){
+
+		
+
+		for(let i = 0; i < employees.results.length; i++){
 
 	
 		if (cardClicked == employees.results[i].login.username) {
 
-			console.log('Here is my profile');
-
-				/* += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
+							
+				modalHTML += `<img class='avatar' src="${employees.results[i].picture.large}">`; 
 				modalHTML += "<h2 class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</h2>";				
 				modalHTML += "<p class='email'>" +  employees.results[i].email + "</p>";
 				modalHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";				
@@ -120,14 +115,16 @@ function displayModal(employees, cardClicked){
 				modalHTML += `<p class=address> ${employees.results[i].location.street.number} ${employees.results[i].location.street.name}, ${employees.results[i].location.city},   ${employees.results[i].location.postcode}  </p>`;
 
 				let dateConvert = new Date(employees.results[i].dob.date);
-				//console.log(dateConvert.getMonth());
-				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;	
-				
-				document.getElementById('modal').innerHTML = modalHTML;
-*/
-
+				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;				
+			
+				document.getElementsByClassName('modal')[0].innerHTML = modalHTML;
+							
+	
+			
 
 		}
+
+	}
 
 	}
 
