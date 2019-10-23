@@ -117,10 +117,8 @@ let modalHTML = "";
 				let dateConvert = new Date(employees.results[i].dob.date);
 				modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;				
 			
-				document.getElementsByClassName('modal')[0].innerHTML = modalHTML;
-							
+				document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;	
 	
-			
 
 		}
 
