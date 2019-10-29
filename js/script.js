@@ -71,7 +71,7 @@ function displayModalWindow(employees) {
 			cardClicked  = e.target.id;
 			e.target.classList.add('current');
 			displayModal(employees, cardClicked);
-			navigation(employees, cardClicked);
+			//navigation(employees, cardClicked);
 				
 		}
 	});
@@ -142,45 +142,57 @@ let modalHTML = "";
 
 function navigation(employees) {
 	
-	
-	const rightArrow = document.getElementById('right');
-	const leftArrow = document.getElementById('left');
-	
-	const directoryNav  =  document.querySelector('#directory');
-	//console.log(directoryNav);
-	var cards = document.querySelectorAll('a');
-	console.log(cards);
-
-
-	
 //Click right arrow
 // looks for current item
 // remove current class from current item
 // go move current class to next item
-
-
 	
-	let itemSelected;
+	let itemSelected;	
+	let current;
+	let nextItem = "";
+	let modalHTML ="";
+	const rightArrow = document.getElementById('right');
+	const leftArrow = document.getElementById('left');
+	const directoryNav  =  document.querySelector('#directory');
+	//console.log(directoryNav);
+	var cards = document.querySelectorAll('a');
+	//console.log(cards);
+		
+	
 
 	rightArrow.addEventListener('click', function(e){		
 			
+		
+		
+		if(nextItem !== null) {
+			
 
-		let current = directory.querySelector('.current');	
-		console.log(current);
 
-		current.classList.remove('current');	
-		let nextItem = current.nextElementSibling;
-		//console.log(nextItem);
+				
+				document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;				
+				current = document.querySelector('.current');	
+				nextItem = current.nextElementSibling;
+				if(nextItem != null) {
+					current.classList.remove('current');
+					nextItem.classList.add('current');
+				}
+			
+		}
+		
+	
+		/*current.classList.remove('current');			
+		nextItem = current.nextElementSibling;
+		console.log(nextItem);
 
 		nextItem.classList.add('current');
 
 		current = directory.querySelector('.current');	
-		//console.log(current);
-		/*let headList = current[0].parentNode;
+		console.log(current);
+		let headList = current[0].parentNode;
 		console.log(headList);
-		itemSelected = current;*/
+		itemSelected = current;*
 		//itemSelected.classList.remove = current;
-
+		*/
 		
 		
 	/*
