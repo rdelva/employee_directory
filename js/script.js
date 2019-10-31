@@ -165,18 +165,16 @@ function navigation(employees) {
 		
 		
 		if(nextItem !== null) {
-			
 
-
-				
-				document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;				
-				current = document.querySelector('.current');	
-				nextItem = current.nextElementSibling;
+			current = document.querySelector('.current');	
+			nextItem = current.nextElementSibling;
+			console.log(nextItem.id);
 				if(nextItem != null) {
 					current.classList.remove('current');
 					nextItem.classList.add('current');
 				}
-			
+
+			document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;		
 		}
 		
 	
