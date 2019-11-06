@@ -34,7 +34,7 @@ function  setupDirectory() {
 
 			displayModalWindow(employees);	
 			document.getElementById('directory').innerHTML = statusHTML;
-			navigation();
+			navigation(employees);
 
 				
 
@@ -162,7 +162,10 @@ function navigation(employees) {
 
 	rightArrow.addEventListener('click', function(e){		
 			
+		modalHTML ="";
 		
+			
+		document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;	
 		
 		if(nextItem !== null) {
 
@@ -172,25 +175,32 @@ function navigation(employees) {
 				if(nextItem != null) {
 					current.classList.remove('current');
 					nextItem.classList.add('current');
+
+					for(let i = 0; i < employees.results.length; i++){
+
+						if(nextItem.id == employees.results[i].login.username){
+
+							modalHTML += `<img class='avatar' src="${employees.results[i].picture.large}">`; 
+							modalHTML += "<h2 class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</h2>";				
+							modalHTML += "<p class='email'>" +  employees.results[i].email + "</p>";
+							modalHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";				
+							modalHTML += "<hr>";
+							modalHTML += "<p>" +  employees.results[i].phone + "</p>";		
+							modalHTML += `<p class=address> ${employees.results[i].location.street.number} ${employees.results[i].location.street.name}, ${employees.results[i].location.city},   ${employees.results[i].location.postcode}  </p>`;
+
+							let dateConvert = new Date(employees.results[i].dob.date);
+							modalHTML += `<p>Birthday: ${dateConvert.getMonth()}/ ${dateConvert.getDay()}/${dateConvert.getYear()}</p>`;				
+						
+							//document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;					
+					}
+
+			}
 				}
 
 			document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;		
 		}
 		
-	
-		/*current.classList.remove('current');			
-		nextItem = current.nextElementSibling;
-		console.log(nextItem);
 
-		nextItem.classList.add('current');
-
-		current = directory.querySelector('.current');	
-		console.log(current);
-		let headList = current[0].parentNode;
-		console.log(headList);
-		itemSelected = current;*
-		//itemSelected.classList.remove = current;
-		*/
 		
 		
 	/*
