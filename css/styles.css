@@ -11,6 +11,12 @@ body {
 	background: #fcfcfc;
 }
 
+header {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;	
+}
+
 .overlay {
 	position: absolute;;
 	height: 100%;
@@ -82,6 +88,14 @@ body {
 h1 {
 	text-transform: uppercase;
 	font-size:1em;	
+}
+
+#search {
+	width:100%; 	
+	border-radius: 10px;
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px solid #ccc;
 }
 
 

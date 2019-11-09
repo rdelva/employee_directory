@@ -13,7 +13,7 @@ function  setupDirectory() {
 				let  statusHTML = '';
 				
 
-
+console.log(employees);
 			for(var i=0; i < employees.results.length; i++ ){
 				
 					statusHTML += `<a  href="#${employees.results[i].login.username}" id="${employees.results[i].login.username}" class="employeeCard">`; 
@@ -50,7 +50,9 @@ function  setupDirectory() {
 }
 	
 
+function filterSearch(employees){
 
+}
 
 function displayModalWindow(employees) {
 
@@ -250,6 +252,7 @@ function navigation(employees) {
 
 
 setupDirectory();
+filterSearch();
 displayModalWindow();
 displayModal();
 
