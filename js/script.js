@@ -13,7 +13,7 @@ function  setupDirectory() {
 				let  statusHTML = '';
 				
 
-console.log(employees);
+			
 			for(var i=0; i < employees.results.length; i++ ){
 				
 					statusHTML += `<a  href="#${employees.results[i].login.username}" id="${employees.results[i].login.username}" class="employeeCard">`; 
@@ -35,6 +35,7 @@ console.log(employees);
 			displayModalWindow(employees);	
 			document.getElementById('directory').innerHTML = statusHTML;
 			navigation(employees);
+			filterSearch(employees);
 
 				
 
@@ -44,13 +45,67 @@ console.log(employees);
 
 	};
 
-	xhr.open('GET', 'https://randomuser.me/api?results=12&?nat=us');
+	xhr.open('GET', 'https://randomuser.me/api?results=12&nat=us,gb');
 	xhr.send();
 
 }
 	
 
 function filterSearch(employees){
+
+	let submit = document.getElementById('submit');
+
+	submit.addEventListener('click', function(e){
+
+		e.preventDefault();
+		let search = document.getElementById('search').value;
+		//console.log(search);
+		const pattern =  /\d/g; //finds a digit
+		let result = search.match(pattern);
+		//console.log(result);
+		if(result == null){
+			for(let i = 0; i < employees.results.length; i++){
+
+				//get First Name and Last Name
+
+				let name = employees.results[i].name.first + employees.results[i].name.last;
+				
+				console.log(search);
+				const pattern =  new RegExp(search);
+				let ifFound = pattern.test(name);	
+				if(ifFound !== true) {
+						document.getElementById(employees.results[i].login.username).style.display = 'none';
+				}				
+			}
+		}
+	});
+	
+	
+	
+
+
+
+		
+
+		
+		/*console.log(search);
+		
+*/
+
+
+
+
+	
+
+	//get value and assign it to varible
+	//compare varible to list
+	//if variable has letter keep it displayed if not hide
+	//if varible is found in word. 
+	//check if word doesn't have a number
+
+	
+
+
 
 }
 
