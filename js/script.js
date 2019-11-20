@@ -15,20 +15,16 @@ function  setupDirectory() {
 
 			
 			for(var i=0; i < employees.results.length; i++ ){
-				
-					statusHTML += `<a  href="#${employees.results[i].login.username}" id="${employees.results[i].login.username}" class="employeeCard">`; 
-					statusHTML += "<div class='card'>";
-					statusHTML += "<img class='avatar' src=" + employees.results[i].picture.large + ">"; 
-					statusHTML += "<div class='employeeInfo'>"; 
-					statusHTML += "<h2 class='name'>" + employees.results[i].name.first + " " +  employees.results[i].name.last + "</h2>";				
-					statusHTML += "<p class='email'>" +  employees.results[i].email + "</p>";
-					statusHTML += "<p class='city'>" +  employees.results[i].location.city + "</p>";
-					statusHTML += "</div>";
-					statusHTML += `</div>`;
-					statusHTML += `</a>`; 	
 
+					statusHTML += `<div id="${employees.results[i].login.username}" class="employeeCard card">
+									<img src="${employees.results[i].picture.large}" class="avatar">
+									<div class="employeeInfo">
+										<h2 class="name"> ${employees.results[i].name.first} ${employees.results[i].name.last}</h2>
+										<p class= "email"> ${employees.results[i].email}</p>
+										<p class= "city"> ${employees.results[i].location.city}</p>
+									</div>
 
-
+								</div>`;
 						
 			}// end of for loop for employees
 
