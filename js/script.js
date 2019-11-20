@@ -39,9 +39,7 @@ function  setupDirectory() {
 
 				
 
-		} else {
-			
-		}
+		} 
 
 	};
 
@@ -62,7 +60,7 @@ function filterSearch(employees){
 		//console.log(search);
 		const pattern =  /\d/g; //finds a digit
 		let result = search.match(pattern);
-		//console.log(result);
+		//console.log(employees.results.length);
 		if(result == null){
 			for(let i = 0; i < employees.results.length; i++){
 
@@ -307,7 +305,6 @@ function navigation(employees) {
 
 
 setupDirectory();
-filterSearch();
 displayModalWindow();
 displayModal();
-
+filterSearch();
