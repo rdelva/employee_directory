@@ -49,8 +49,12 @@ function  setupDirectory() {
 
 function filterSearch(employees){
 
-	let submit = document.getElementById('submit');
+	const searchBox = document.getElementById('search').value;
+	const cards = document.querySelectorAll('card');
+	console.log(cards);
 
+
+	let submit = document.getElementById('submit');
 
 	submit.addEventListener('click', function(e){
 
@@ -77,9 +81,11 @@ function filterSearch(employees){
 		}
 	});
 	
-filteredSearch();
+
 
 } 
+
+/*
 
 filteredSearch = function (){
 		let cards = document.querySelectorAll('.card');
@@ -95,7 +101,7 @@ filteredSearch = function (){
 	}
 
 	
-}
+}*/
 
 
 
@@ -185,7 +191,6 @@ function navigation(employees) {
 // remove current class from current item
 // go move current class to next item
 	
-	let itemSelected;	
 	let current;
 	let nextItem = "";
 	let prevItem ="";
@@ -285,7 +290,9 @@ function navigation(employees) {
 
 
 setupDirectory();
-//displayModalWindow();
 displayModal();
-filterSearch();
+
+
+//displayModalWindow();
+//filterSearch();
 //filteredSearch();

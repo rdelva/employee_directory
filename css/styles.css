@@ -17,6 +17,29 @@ header {
 	flex-direction: column;	
 }
 
+form {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: row;
+}
+
+#submit {
+	max-width: 100%;
+	width:20%;
+	margin:10px;
+	background-color:#fcfcfc;
+	color:#4a4a4a;
+	border: 1px solid #4a4a4a;
+	cursor: pointer;
+}
+
+#submit:hover{
+	transition-property: background-color color;
+	background-color: #4a4a4a;
+	color: #fff;
+	transition-duration: .8s;
+}
+
 .overlay {
 	position: absolute;;
 	height: 100%;
