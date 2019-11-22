@@ -47,30 +47,29 @@ function  setupDirectory() {
 
 	
 
-function filterSearch(employees, filterSearch){
+function filterSearch(employees){
 
 	let submit = document.getElementById('submit');
+
 
 	submit.addEventListener('click', function(e){
 
 		e.preventDefault();
 		let search = document.getElementById('search').value;
-		//console.log(search);
-		const pattern =  /\d/g; //finds a digit
+		const pattern =  /\d/g; //prevents user from adding a number in the textbox
 		let result = "";
-		 result = search.match(pattern);
+		result = search.match(pattern);
 	
 		if(result == null){
-			console.log(employees.results.length);
 			for(let i = 0; i < employees.results.length; i++){
 
 				//get First Name and Last Name
 
-				let name = employees.results[i].name.first + employees.results[i].name.last;
+				let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;
 				
-				console.log(search);
-				const pattern =  new RegExp(search);
-				let ifFound = pattern.test(name);	
+				
+				const pattern =  new RegExp(search.toLowerCase());
+				let ifFound = pattern.test(name.toLowerCase());	
 				if(ifFound !== true) {
 						document.getElementById(employees.results[i].login.username).style.display = 'none';
 				} 				
