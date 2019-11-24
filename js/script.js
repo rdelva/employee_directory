@@ -33,6 +33,7 @@ function  setupDirectory() {
 			navigation(employees);
 			filterSearch(employees);
 
+
 				
 
 		} 
@@ -45,20 +46,73 @@ function  setupDirectory() {
 }
 
 
-	
 
 function filterSearch(employees){
+	
 
-	const searchBox = document.getElementById('search').value;
+	let cards = document.querySelectorAll('.card');
+	const searchBar = document.querySelector('#search');
+
+	searchBar.addEventListener("keyup", (e) =>{
+		if(searchBar.value) {		
+			let searchItem = searchBar.value.toLowerCase();
+			
+				for(let i = 0; i < employees.results.length; i++){
+					//get First Name and Last Name
+					let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;
+					
+					
+					const pattern =  new RegExp(searchItem.toLowerCase());
+					let ifFound = pattern.test(name.toLowerCase());	
+				
+					if(ifFound !== true) {
+							document.getElementById(employees.results[i].login.username).style.display = 'none';	
+							//document.getElementById(employees.results[i].login.username).classList.add('hidden');
+
+					} else {
+						document.getElementById(employees.results[i].login.username).style.display = 'flex';	
+
+					}				
+				} 
+			
+		} else {
+
+			for(let i =0; i < cards.length; i++){
+		 		if(cards[i].style.display = 'none'){
+		 			cards[i].style.display = 'flex';
+
+		 		}
+
+		}
+	}
+
+
+	});
+	
+
+
+
+
+
+
+	//if button is not clicked. send in entire list to display modal window
+	//if button is clickled add hidden class that don't patch add visible class that match
+	//select found items and send to list
+
+
+	/*const searchBox = document.getElementById('search').value;
 	const cards = document.querySelectorAll('card');
-	console.log(cards);
+	console.log(cards);*/
 
 
-	let submit = document.getElementById('submit');
+	/*let submit = document.getElementById('submit');
 
 	submit.addEventListener('click', function(e){
 
 		e.preventDefault();
+		let filteredList = [];
+					let counter = 0;
+					
 		let search = document.getElementById('search').value;
 		const pattern =  /\d/g; //prevents user from adding a number in the textbox
 		let result = "";
@@ -66,26 +120,30 @@ function filterSearch(employees){
 	
 		if(result == null){
 			for(let i = 0; i < employees.results.length; i++){
-
 				//get First Name and Last Name
-
 				let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;
 				
 				
 				const pattern =  new RegExp(search.toLowerCase());
 				let ifFound = pattern.test(name.toLowerCase());	
+			
 				if(ifFound !== true) {
 						document.getElementById(employees.results[i].login.username).style.display = 'none';
+						 //let userid = document.getElementById(employees.results[i].login.username);
+						 
+
+				} else {
+					counter++;
 				} 				
 			}
 		}
 	});
 	
-
+*/
 
 } 
 
-/*
+
 
 filteredSearch = function (){
 		let cards = document.querySelectorAll('.card');
@@ -101,7 +159,7 @@ filteredSearch = function (){
 	}
 
 	
-}*/
+}
 
 
 
@@ -149,7 +207,20 @@ function displayModalWindow(employees) {
 
 
 function displayModal(employees, cardClicked){	
+
 	
+	let cards = document.querySelectorAll('.card');
+	let counter = 0;
+	
+	for(let i=0; i < cards.length; i++){
+		if(!cards[i].style.display == 'none'){
+
+			console.log("Hi");
+
+		}
+
+	}
+
 	let modalHTML = "";
 	if( employees != undefined && cardClicked != undefined){
 
@@ -159,6 +230,9 @@ function displayModal(employees, cardClicked){
 
 	
 			if (cardClicked == employees.results[i].login.username) {
+
+				//Hides first arrow  in queue
+				
 								
 					modalHTML += `<img class="avatar" src="${employees.results[i].picture.large}"> 
 				 					<h2 class="name"> ${employees.results[i].name.first} ${employees.results[i].name.last} </h2>				
@@ -291,7 +365,6 @@ function navigation(employees) {
 
 setupDirectory();
 displayModal();
-
 
 //displayModalWindow();
 //filterSearch();
