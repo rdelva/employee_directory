@@ -65,25 +65,15 @@ function filterSearch(employees){
 					const pattern =  new RegExp(searchItem.toLowerCase());
 					let ifFound = pattern.test(name.toLowerCase());	
 				
-					if(ifFound !== true) {
-							document.getElementById(employees.results[i].login.username).style.display = 'none';
+					if(ifFound == true) {
+							document.getElementById(employees.results[i].login.username).style.display = 'flex';	
 							
 					
-							/*for(let i = 0; i < cards.length; i++){
-								if(cards[i].style.display !== 'none'){
-										cards[i].classList.add('show');
-								}
-
-							}	*/
-							
-							//document.getElementById(employees.results[i].login.username).classList.add('hidden');
-
 					} else {
-						document.getElementById(employees.results[i].login.username).style.display = 'flex';	
-						//document.querySelector(`#${employees.results[i].login.username}`).classList.remove('hidden');
-						//document.querySelector(`#${employees.results[i].login.username}`).classList.add('visible');
+					
+						document.getElementById(employees.results[i].login.username).style.display = 'none';
 
-
+					
 					}				
 				} 
 			
