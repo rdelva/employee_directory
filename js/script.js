@@ -32,6 +32,7 @@ function  setupDirectory() {
 			document.getElementById('directory').innerHTML = statusHTML;
 			navigation(employees);
 			filterSearch(employees);
+	
 
 
 				
@@ -52,6 +53,7 @@ function filterSearch(employees){
 
 	let cards = document.querySelectorAll('.card');
 	const searchBar = document.querySelector('#search');
+	
 
 	searchBar.addEventListener("keyup", (e) =>{
 		if(searchBar.value) {		
@@ -59,24 +61,34 @@ function filterSearch(employees){
 			
 				for(let i = 0; i < employees.results.length; i++){
 					//get First Name and Last Name
-					let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;
-					
-					
+					let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;					
 					const pattern =  new RegExp(searchItem.toLowerCase());
 					let ifFound = pattern.test(name.toLowerCase());	
 				
 					if(ifFound !== true) {
-							document.getElementById(employees.results[i].login.username).style.display = 'none';	
+							document.getElementById(employees.results[i].login.username).style.display = 'none';
+							
+					
+							/*for(let i = 0; i < cards.length; i++){
+								if(cards[i].style.display !== 'none'){
+										cards[i].classList.add('show');
+								}
+
+							}	*/
+							
 							//document.getElementById(employees.results[i].login.username).classList.add('hidden');
 
 					} else {
 						document.getElementById(employees.results[i].login.username).style.display = 'flex';	
+						//document.querySelector(`#${employees.results[i].login.username}`).classList.remove('hidden');
+						//document.querySelector(`#${employees.results[i].login.username}`).classList.add('visible');
+
 
 					}				
 				} 
 			
 		} else {
-
+			
 			for(let i =0; i < cards.length; i++){
 		 		if(cards[i].style.display = 'none'){
 		 			cards[i].style.display = 'flex';
@@ -85,6 +97,7 @@ function filterSearch(employees){
 
 		}
 	}
+
 
 
 	});
@@ -145,20 +158,22 @@ function filterSearch(employees){
 
 
 
-filteredSearch = function (){
-		let cards = document.querySelectorAll('.card');
-	//console.log(cards.length);
-	let cardTotal = 0;
-	//find out how many cards are not hidden
+ let pullList = () => { 
 
-	for(let i = 0; i < cards.length; i++){
-		if(!cards[i].classList.contains('card')){
-			cardTotal++;
+ 	let cardList = [];
+
+	let list = document.querySelectorAll('.card');
+	console.log(list);
+	for(let i = 0; i < list.length; i++){
+		if(list[i].style.display = 'flex'){
+			console.log(list[i].id);
+			//cardList.push(list[i].id);
 		}
-		//console.log(cardTotal);
-	}
 
+	}
 	
+	console.log(cardList);
+
 }
 
 
@@ -365,6 +380,7 @@ function navigation(employees) {
 
 setupDirectory();
 displayModal();
+pullList();
 
 //displayModalWindow();
 //filterSearch();
