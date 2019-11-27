@@ -28,11 +28,14 @@ function  setupDirectory() {
 						
 			}// end of for loop for employees
 
-			displayModalWindow(employees);	
+
 			document.getElementById('directory').innerHTML = statusHTML;
-			navigation(employees);
+
 			filterSearch(employees);
-	
+			displayModalWindow(employees, pullList);	
+			navigation(employees);
+			
+		
 
 
 				
@@ -53,7 +56,8 @@ function filterSearch(employees){
 
 	let cards = document.querySelectorAll('.card');
 	const searchBar = document.querySelector('#search');
-	
+	let idName; 
+	let idName2;
 
 	searchBar.addEventListener("keyup", (e) =>{
 		if(searchBar.value) {		
@@ -66,26 +70,33 @@ function filterSearch(employees){
 					let ifFound = pattern.test(name.toLowerCase());	
 				
 					if(ifFound == true) {
-							document.getElementById(employees.results[i].login.username).style.display = 'flex';	
-							
-					
+							//document.getElementById(employees.results[i].login.username).style.display = 'flex';
+							idName = employees.results[i].login.username;
+							 let idName2 = document.getElementById(idName);
+							 idName2.classList.add('visible');
+							 console.log(idName2);
+
+		
 					} else {
 					
-						document.getElementById(employees.results[i].login.username).style.display = 'none';
+						//document.getElementById(employees.results[i].login.username).style.display = 'none';
+						idName = document.getElementById(employees.results[i].login.username);
+						idName.classList.add('hideCard');
+
 
 					
 					}				
 				} 
 			
 		} else {
-			
+			/*
 			for(let i =0; i < cards.length; i++){
 		 		if(cards[i].style.display = 'none'){
 		 			cards[i].style.display = 'flex';
 
 		 		}
 
-		}
+		}*/
 	}
 
 
@@ -94,83 +105,44 @@ function filterSearch(employees){
 	
 
 
+} // end of filterSearch
 
 
-
-
-	//if button is not clicked. send in entire list to display modal window
-	//if button is clickled add hidden class that don't patch add visible class that match
-	//select found items and send to list
-
-
-	/*const searchBox = document.getElementById('search').value;
-	const cards = document.querySelectorAll('card');
-	console.log(cards);*/
-
-
-	/*let submit = document.getElementById('submit');
-
-	submit.addEventListener('click', function(e){
-
-		e.preventDefault();
-		let filteredList = [];
-					let counter = 0;
-					
-		let search = document.getElementById('search').value;
-		const pattern =  /\d/g; //prevents user from adding a number in the textbox
-		let result = "";
-		result = search.match(pattern);
 	
-		if(result == null){
-			for(let i = 0; i < employees.results.length; i++){
-				//get First Name and Last Name
-				let name =`${employees.results[i].name.first} ${employees.results[i].name.last}`;
-				
-				
-				const pattern =  new RegExp(search.toLowerCase());
-				let ifFound = pattern.test(name.toLowerCase());	
+
+function pullList(){
+// only selects cards that match the search
+
+	let cardList = document.getElementsByClassName('card');
+	let displayedCard = [];
 			
-				if(ifFound !== true) {
-						document.getElementById(employees.results[i].login.username).style.display = 'none';
-						 //let userid = document.getElementById(employees.results[i].login.username);
-						 
-
-				} else {
-					counter++;
-				} 				
-			}
+	for(let i=0; i < cardList.length; i++){
+		if(cardList[i].style.display == 'flex'){
+							
+		// puts the match searches in a list
+			displayedCard.push(cardList[i]);				
+					
 		}
-	});
-	
-*/
-
-} 
-
-
-
- let pullList = () => { 
-
- 	let cardList = [];
-
-	let list = document.querySelectorAll('.card');
-	console.log(list);
-	for(let i = 0; i < list.length; i++){
-		if(list[i].style.display = 'flex'){
-			console.log(list[i].id);
-			//cardList.push(list[i].id);
-		}
-
 	}
-	
-	console.log(cardList);
-
+		
+			
+			console.log(displayedCard);
 }
 
 
 
 
 
-function displayModalWindow(employees) {
+
+
+
+
+function displayModalWindow(employees, pullList) {
+
+
+	//console.log(cardList);
+
+
 
 
 	const directory = document.getElementById('directory');
@@ -181,7 +153,7 @@ function displayModalWindow(employees) {
 
 
 	directory.addEventListener('click', (event) => {
-	
+	pullList(); // will put in the last
 
 		let cardClicked;
 
@@ -214,17 +186,7 @@ function displayModalWindow(employees) {
 function displayModal(employees, cardClicked){	
 
 	
-	let cards = document.querySelectorAll('.card');
-	let counter = 0;
-	
-	for(let i=0; i < cards.length; i++){
-		if(!cards[i].style.display == 'none'){
 
-			console.log("Hi");
-
-		}
-
-	}
 
 	let modalHTML = "";
 	if( employees != undefined && cardClicked != undefined){
@@ -286,12 +248,17 @@ function navigation(employees) {
 		modalHTML ="";	
 			
 		document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;		
+			
+			//selects the card that was clicked
+			let current  = document.querySelector('.current');
+			
 		
 
-			current = document.querySelector('.current');
+
+			/*current = document.querySelector('.current');
 			nextItem = current.nextElementSibling;
 			//console.log(nextItem.id);
-				if(nextItem != null) {
+				if(nextItem != null && (nextItem.style.display == 'flex')) {
 					current.classList.remove('current');
 					nextItem.classList.add('current');
 
@@ -317,6 +284,7 @@ function navigation(employees) {
 				}  
 
 			document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;		
+			*/
 	
 		});
 
@@ -370,7 +338,7 @@ function navigation(employees) {
 
 setupDirectory();
 displayModal();
-pullList();
+//pullList();
 
 //displayModalWindow();
 //filterSearch();
