@@ -16,23 +16,28 @@ function  setupDirectory() {
 			
 			for(var i=0; i < employees.results.length; i++ ){
 
-					statusHTML += `<div id="${employees.results[i].login.username}" class="employeeCard card">
+					statusHTML += `<a id="${employees.results[i].login.username}" class="employeeCard">
+									<div class="card">
 									<img src="${employees.results[i].picture.large}" class="avatar">
 									<div class="employeeInfo">
 										<h2 class="name"> ${employees.results[i].name.first} ${employees.results[i].name.last}</h2>
 										<p class= "email"> ${employees.results[i].email}</p>
 										<p class= "city"> ${employees.results[i].location.city}</p>
 									</div>
+									</div>
 
-								</div>`;
+								</a>`;
 						
 			}// end of for loop for employees
 
 
 			document.getElementById('directory').innerHTML = statusHTML;
 
+			let cardClicked; // Why do I have to declare a varible here?
+
 			filterSearch(employees);
-			displayModalWindow(employees, pullList);	
+			displayModalWindow(pullList);				
+			displayModal(employees);
 			navigation(employees);
 			
 		
@@ -54,7 +59,7 @@ function  setupDirectory() {
 function filterSearch(employees){
 	
 
-	let cards = document.querySelectorAll('.card');
+	let cards = document.querySelectorAll('.employeeCard');
 	const searchBar = document.querySelector('#search');
 	let idName; 
 	let idName2;
@@ -74,14 +79,18 @@ function filterSearch(employees){
 							idName = employees.results[i].login.username;
 							 let idName2 = document.getElementById(idName);
 							 idName2.classList.add('visible');
-							 console.log(idName2);
+							 idName2.classList.remove('hideCard');
+							 //console.log(idName2);
 
 		
 					} else {
 					
 						//document.getElementById(employees.results[i].login.username).style.display = 'none';
-						idName = document.getElementById(employees.results[i].login.username);
-						idName.classList.add('hideCard');
+
+						idName = employees.results[i].login.username;
+						let idName3 = document.getElementById(idName);
+						idName3.classList.remove('visible');
+						idName3.classList.add('hideCard');
 
 
 					
@@ -89,14 +98,16 @@ function filterSearch(employees){
 				} 
 			
 		} else {
-			/*
+			
 			for(let i =0; i < cards.length; i++){
-		 		if(cards[i].style.display = 'none'){
-		 			cards[i].style.display = 'flex';
+		 		if(cards[i].classList.contains('hideCard')){
+		 			//cards[i].style.display = 'flex';
+		 			cards[i].classList.remove('visible');
+		 				cards[i].classList.remove('hideCard');
 
 		 		}
 
-		}*/
+		}
 	}
 
 
@@ -113,7 +124,7 @@ function filterSearch(employees){
 function pullList(){
 // only selects cards that match the search
 
-	let cardList = document.getElementsByClassName('card');
+	let cardList = document.getElementsByClassName('employeeCard');
 	let displayedCard = [];
 			
 	for(let i=0; i < cardList.length; i++){
@@ -126,7 +137,9 @@ function pullList(){
 	}
 		
 			
-			console.log(displayedCard);
+			//console.log(displayedCard);
+			
+
 }
 
 
@@ -137,37 +150,47 @@ function pullList(){
 
 
 
-function displayModalWindow(employees, pullList) {
-
-
-	//console.log(cardList);
-
-
-
+function displayModalWindow(pullList) {
 
 	const directory = document.getElementById('directory');
 	
 	const modalClose = document.querySelector('.modal-close');
-	const cards  = document.getElementsByClassName('card');
+	const cards  = document.getElementsByClassName('employeeCard');
 	const hidden = document.querySelector('.hidden');
 
-
+let cardFlagged = false;
 	directory.addEventListener('click', (event) => {
-	pullList(); // will put in the last
 
-		let cardClicked;
+			if (event.target.tagName == "A") {				
+						
+						let cardClicked = event.target.id;						
+						document.getElementById(cardClicked).classList.add('current');
+						console.log(cardClicked);
+						hidden.style.display = "block";
+						displayModal(cardClicked);
+						/*cardFlagged = true;
+						
+						if(cardFlagged == true){
+									let prevCurrent = document.querySelector('.current');
+									console.log(prevCurrent);
+							 		prevCurrent.classList.remove('current');
 
-		if (event.target.tagName == "DIV") {				
-			hidden.style.display = "block";			
-			cardClicked  = event.target.id;
-			event.target.classList.add('current');
-			displayModal(employees, cardClicked);
-				
-		}
+						}
+						 */
+						
+						 
+			}
+
+
 
 	
 
+		
+				
+		
 
+	
+		
 	});
 
 	modalClose.addEventListener('click', function(e){
@@ -175,6 +198,8 @@ function displayModalWindow(employees, pullList) {
 		hidden.style.display = 'none';
 
 	});
+
+
 
 } // end of displayModalWindow
 		
@@ -186,10 +211,12 @@ function displayModalWindow(employees, pullList) {
 function displayModal(employees, cardClicked){	
 
 	
-
+let current = document.querySelector('.current');
+//console.log(cardClicked);
+//console.log(employees);
 
 	let modalHTML = "";
-	if( employees != undefined && cardClicked != undefined){
+	if( employees != null && cardClicked != undefined){
 
 		
 
@@ -252,10 +279,7 @@ function navigation(employees) {
 			//selects the card that was clicked
 			let current  = document.querySelector('.current');
 			
-		
-
-
-			/*current = document.querySelector('.current');
+			current = document.querySelector('.current');
 			nextItem = current.nextElementSibling;
 			//console.log(nextItem.id);
 				if(nextItem != null && (nextItem.style.display == 'flex')) {
@@ -284,7 +308,7 @@ function navigation(employees) {
 				}  
 
 			document.getElementsByClassName('text-container')[0].innerHTML = modalHTML;		
-			*/
+			
 	
 		});
 
@@ -337,9 +361,9 @@ function navigation(employees) {
 
 
 setupDirectory();
-displayModal();
+
 //pullList();
 
-//displayModalWindow();
+
 //filterSearch();
 //filteredSearch();
