@@ -167,28 +167,11 @@ let cardFlagged = false;
 						document.getElementById(cardClicked).classList.add('current');
 						console.log(cardClicked);
 						hidden.style.display = "block";
-						displayModal(cardClicked);
-						/*cardFlagged = true;
+						displayModal(cardClicked);				
 						
-						if(cardFlagged == true){
-									let prevCurrent = document.querySelector('.current');
-									console.log(prevCurrent);
-							 		prevCurrent.classList.remove('current');
-
-						}
-						 */
 						
 						 
 			}
-
-
-
-	
-
-		
-				
-		
-
 	
 		
 	});
