@@ -1,7 +1,7 @@
 // global variables
 let employees = [];
 const urlAPI = "https://randomuser.me/api/?results=12&inc=name, picture, email, location, phone, dob &noinfo &nat=US";
-const  gridContainer = document.querySelector(".grid-container");
+const  gridContainer = document.querySelector("#grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose  = document.querySelector(".modal-close");
@@ -17,6 +17,7 @@ fetch(urlAPI)
 function displayEmployees(employeeData){
 
 	employees = employeeData;
+	console.log(employees);
 	let employeesHTML = "";
 
 	employees.forEach((employee, index) => {
@@ -25,9 +26,8 @@ function displayEmployees(employeeData){
 		let city = employee.location.city;
 		let picture = employee.picture;
 
-	});
 
-	employeesHTML += `
+		employeesHTML += `
 		<div class="card" data-index="${index}">
 			<img class="avatar" src="${picture.large}"/>
 			<div class="text-container">
@@ -38,7 +38,11 @@ function displayEmployees(employeeData){
 		</div>
 	`;
 
-	gridContainer.innerHTML = employeesHTML;
+
+	});
+
+
+		gridContainer.innerHTML = employeesHTML;
 
 }
 

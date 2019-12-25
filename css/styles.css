@@ -94,9 +94,8 @@ form {
 
 }
 .text-container {
-	width: 100%;
-	
-	text-align: center;
+	width: 100%;	
+	margin-left:1em;
 }
 
 .hidden {
@@ -137,7 +136,7 @@ h1 {
 
 
 
-#directory  {
+#grid-container  {
 	display: flex;
 	flex-direction: column;
 	z-index:-1000;
@@ -152,21 +151,17 @@ h1 {
 	flex-direction: row;
 	flex-wrap:nowrap;
 	cursor: pointer;
-
-}
-
-.employeeCard{
 	margin:10px 0;
 	border: solid 1px #dfdfdf;
 	border-radius: 10px;
-	padding:5px;	
+	padding:20px 10px;	
 	height:145px;
 	text-decoration: none;
 }
 
 
 
-.employeeCard:hover {
+.card:hover {
 	border: solid 1px #4a4a4a;
 
 }
@@ -189,7 +184,7 @@ h1 {
 	font-weight: bold;
 }
 
-.employeeInfo .email,.employeeInfo .city  {
+.card .email,.card .address  {
 	font-size: .80em;
 	color:#b2b5b8;
 	margin-top:5px;
@@ -216,20 +211,20 @@ p{
 
 @media (min-width: 768px){
 
-	#directory  {
+	#grid-container  {
 		
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between; 	
 	}
 
-	.employeeCard  {
+	.card  {
 
 		width:45%;
 
 	}
 
-	.employeeCard img {	
+	.card img {	
 		width:100px;
 		height:100px;		
 	}
@@ -242,7 +237,7 @@ p{
 		max-width: 1024px;
 	}
 
-	.employeeCard {
+	.card {
 		width:33%;
 	}
 
