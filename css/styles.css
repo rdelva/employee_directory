@@ -61,11 +61,19 @@ form {
 	padding: 30px 20px;
 }
 
+.modal-window{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	width: 100%;
+}
+
 .modal-content {
 
 	margin:20px 0;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
+	justify-content: center;
 
 }
 .modal-content p {
@@ -80,7 +88,8 @@ form {
 }
 
 .modal-content .avatar {
-	justify-content: center;
+	
+	align-self: center;
 
 }
 
@@ -206,6 +215,9 @@ p{
 .arrow img {
 	width:50px;
 	height:50px;
+	
+
+
 }
 
 
