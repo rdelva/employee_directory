@@ -17,7 +17,7 @@ fetch(urlAPI)
 function displayEmployees(employeeData){
 
 	employees = employeeData;
-	console.log(employees);
+	//console.log(employees);
 	let employeesHTML = "";
 
 	employees.forEach((employee, index) => {
@@ -90,3 +90,16 @@ gridContainer.addEventListener('click', e => {
 modalClose.addEventListener('click', () => {
 	overlay.classList.add("hidden");
 });
+
+function searchEmployee(){
+	search = document.querySelector('#search');
+	cards = document.querySelectorAll('.card');
+	console.log(cards);
+
+	search.addEventListener('keydown', e => {
+		
+
+	});
+}
+
+searchEmployee();
