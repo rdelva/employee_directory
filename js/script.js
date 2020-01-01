@@ -11,7 +11,7 @@ fetch(urlAPI)
 	.then(res => res.json())
 	.then(res => res.results)
 	.then(displayEmployees)
-	.catch(err => console.log(err))
+	.catch(err => console.log(err));
 
 
 function displayEmployees(employeeData){
@@ -61,7 +61,7 @@ function displayModal(index){
 			<p class="address">${city}</p>
 			<hr/>
 			<p>${phone}</p>
-			<p class="address"> ${street}, ${state} ${postcode}</p>
+			<p class="address"> ${street.number} ${street.name} , ${state} ${postcode}</p>
 			<p>Birthday: ${date.getMonth()}/${date.getDate()}/ ${date.getFullYear()}</p>
 		</div>
 
@@ -91,13 +91,42 @@ modalClose.addEventListener('click', () => {
 	overlay.classList.add("hidden");
 });
 
-function searchEmployee(){
-	search = document.querySelector('#search');
-	cards = document.querySelectorAll('.card');
-	console.log(cards);
 
-	search.addEventListener('keydown', e => {
+
+
+function searchEmployee(){
+	let search = document.querySelector('#search');
+
+	const cards = document.getElementsByClassName('card');
+				
+
+	let list = [];
+	let result = ''; 
+	search.addEventListener('keyup', e => {
+
+		result = search.value.toLowerCase();
 		
+		//Note wanted to try and use filter for this. Was uncessful need to ask for help
+
+		for(let i = 0; i < cards.length; i++){
+
+			 let cardName = cards[i].querySelector('.name').innerHTML.toLowerCase();
+			  let match = cardName.includes(result);	
+			
+			 if(match) {
+			 	if(cards[i].style.display === 'none'){
+			 			cards[i].style.display = 'flex'
+			 	}			 
+				 
+			} else {				
+				
+				cards[i].style.display = 'none';
+			}
+
+		}
+
+
+
 
 	});
 }
