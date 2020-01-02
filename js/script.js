@@ -73,8 +73,6 @@ function displayModal(index){
 	modalContainer.innerHTML = modalHTML;
 
 
-
-
 }
 
 
@@ -85,14 +83,65 @@ gridContainer.addEventListener('click', e => {
 
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
+		card.classList.add('current');	
 		displayModal(index);
+		//directionalArrows(card);
+		
+	
+		
+		
 
 	}
 
 });
 
+//Directional Arrows
 
-modalClose.addEventListener('click', () => {
+function directionalArrows(){
+
+	const next = document.getElementById('right');
+	const prev  = document.getElementById('left');
+	// = card;
+	
+	next.addEventListener('click', (e) => {
+		
+		let current = document.querySelector('.current');
+		console.log(current);
+		const index = current.getAttribute("data-index");
+		console.log(index);
+
+
+		let list = document.querySelectorAll('.card');
+		let modalList = [];
+
+		for(let i = 0; i < list.length; i++){
+			if(!list[i].classList.contains('hideCard') ){
+				modalList.push(list[i]);
+			}
+				console.log(modalList[i]);
+		}
+	
+		modalContainer.innerHTML = '';
+	
+	
+
+		
+		
+	
+		
+	});
+
+
+	prev.addEventListener('click', (e) => {
+		
+	});
+
+
+}
+
+
+
+modalClose.addEventListener('click', (e) => {
 	overlay.classList.add("hidden");
 });
 
@@ -138,4 +187,11 @@ function searchEmployee(){
 }
 
 
+
+
+	
+
+
+
+directionalArrows();
 searchEmployee();
