@@ -29,11 +29,13 @@ function displayEmployees(employeeData){
 
 		employeesHTML += `
 		<div class="card" data-index="${index}">
-			<img class="avatar" src="${picture.large}"/>
-			<div class="text-container">
-				<h2 class="name">${name.first} ${name.last}</h2>
-				<p class="email">${email}</p>
-				<p class="address">${city}</p>
+			<div class="card-info">
+				<img class="avatar" src="${picture.large}"/>
+				<div class="text-container">
+					<h2 class="name">${name.first} ${name.last}</h2>
+					<p class="email">${email}</p>
+					<p class="address">${city}</p>
+				</div>
 			</div>
 		</div>
 	`;
@@ -69,6 +71,10 @@ function displayModal(index){
 
 	overlay.classList.remove("hidden");
 	modalContainer.innerHTML = modalHTML;
+
+
+
+
 }
 
 
@@ -79,7 +85,6 @@ gridContainer.addEventListener('click', e => {
 
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
-
 		displayModal(index);
 
 	}
@@ -107,6 +112,7 @@ function searchEmployee(){
 		result = search.value.toLowerCase();
 		
 		//Note wanted to try and use filter for this. Was uncessful need to ask for help
+		//better way to use classes instead replying on style
 
 		for(let i = 0; i < cards.length; i++){
 
@@ -114,21 +120,22 @@ function searchEmployee(){
 			  let match = cardName.includes(result);	
 			
 			 if(match) {
-			 	if(cards[i].style.display === 'none'){
-			 			cards[i].style.display = 'flex'
+			 	if(cards[i].classList.contains('hideCard')){
+			 			cards[i].classList.remove('hideCard');
 			 	}			 
 				 
 			} else {				
 				
-				cards[i].style.display = 'none';
+				cards[i].classList.add('hideCard');
+					
 			}
 
 		}
 
 
 
-
 	});
 }
+
 
 searchEmployee();
