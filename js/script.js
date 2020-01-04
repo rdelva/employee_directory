@@ -85,7 +85,7 @@ gridContainer.addEventListener('click', e => {
 		const index = card.getAttribute("data-index");
 		card.classList.add('current');	
 		displayModal(index);
-		//directionalArrows(card);
+		directionalArrows(index);
 		
 	
 		
@@ -97,32 +97,27 @@ gridContainer.addEventListener('click', e => {
 
 //Directional Arrows
 
-function directionalArrows(){
+function directionalArrows(index){
 
 	const next = document.getElementById('right');
 	const prev  = document.getElementById('left');
-	// = card;
-	
+	//let currentCard = parseInt(index);
+ 	
 	next.addEventListener('click', (e) => {
-		
+	
 		let current = document.querySelector('.current');
-		console.log(current);
-		const index = current.getAttribute("data-index");
-		console.log(index);
-
-
-		let list = document.querySelectorAll('.card');
-		let modalList = [];
-
-		for(let i = 0; i < list.length; i++){
-			if(!list[i].classList.contains('hideCard') ){
-				modalList.push(list[i]);
-			}
-				console.log(modalList[i]);
+		let parentEl = current.parentNode;
+		let nextEl = current.nextElementSibling;
+		
+		if(!nextEl.classList.contains('hideCard')) {
+			current.classList.remove('current');
+			nextEl.classList.add('current');	
+			displayModal(nextEl.getAttribute('data-index'));
+		} else {
+			nextEl.next
 		}
-	
-		modalContainer.innerHTML = '';
-	
+
+
 	
 
 		
