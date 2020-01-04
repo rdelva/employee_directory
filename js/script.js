@@ -85,7 +85,7 @@ gridContainer.addEventListener('click', e => {
 		const index = card.getAttribute("data-index");
 		card.classList.add('current');	
 		displayModal(index);
-		directionalArrows(index);
+		//directionalArrows(index);
 		
 	
 		
@@ -97,7 +97,7 @@ gridContainer.addEventListener('click', e => {
 
 //Directional Arrows
 
-function directionalArrows(index){
+function directionalArrows(){
 
 	const next = document.getElementById('right');
 	const prev  = document.getElementById('left');
@@ -106,17 +106,47 @@ function directionalArrows(index){
 	next.addEventListener('click', (e) => {
 	
 		let current = document.querySelector('.current');
-		let parentEl = current.parentNode;
-		let nextEl = current.nextElementSibling;
+		let card = document.querySelectorAll('.card');
+		// let index  = parseInt(current.getAttribute('data-index'));
+	
+		let list = [];
+
+
+		//Builds the current list of displayed cards
+		for(let i = 0; i < card.length; i++){
+			if(!card[i].classList.contains('hideCard')){
+				list.push(card[i]);
+			}
+			
+		}
+
+		//goes to the next card
+		for(let i = 0; i < list.length; i++){
+			if(list[i].classList.contains('current')){
+				list[i].classList.remove('current');
+				list[i + 1].classList.add('current');
+				 let index = list[i+1].getAttribute('data-index');
+				console.log(list[i+1].getAttribute('data-index'));
+				displayModal(index);
+
+			}
+
+		}
+
+		console.log(list);
+
 		
-		if(!nextEl.classList.contains('hideCard')) {
+	/*	if(!nextEl.classList.contains('hideCard')) {
 			current.classList.remove('current');
 			nextEl.classList.add('current');	
 			displayModal(nextEl.getAttribute('data-index'));
 		} else {
-			nextEl.next
-		}
+			nextEl.next;
+		}*/
 
+//get the index starting point based on which item i click on. 
+// check the next item over if it does have the hide card. go to the next one
+// if it doesn't have hide card send the value to display modal and end the loop
 
 	
 
