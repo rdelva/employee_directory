@@ -83,12 +83,18 @@ gridContainer.addEventListener('click', e => {
 
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
-		card.classList.add('current');	
 		displayModal(index);
-		//directionalArrows(index);
-		
+		directionalArrows(index);
+		const cards = document.querySelectorAll('.card');
+
+		//scrubs list to see if a card was selected
+		for(let i=0; i < cards.length; i++){
+			if(cards[i].classList.contains('current')){
+				cards[i].classList.remove('current');
+			}
+		}
 	
-		
+		card.classList.add('current');
 		
 
 	}
@@ -105,14 +111,12 @@ function directionalArrows(){
  	
 	next.addEventListener('click', (e) => {
 	
-		let current = document.querySelector('.current');
 		let card = document.querySelectorAll('.card');
-		// let index  = parseInt(current.getAttribute('data-index'));
 	
 		let list = [];
 
 
-		//Builds the current list of displayed cards
+		//Builds the  list of displayed cards
 		for(let i = 0; i < card.length; i++){
 			if(!card[i].classList.contains('hideCard')){
 				list.push(card[i]);
@@ -120,20 +124,45 @@ function directionalArrows(){
 			
 		}
 
-		//goes to the next card
-		for(let i = 0; i < list.length; i++){
+		//find the current card and get the index number for the card
+		let current = document.querySelector('.current');
+		let index  = parseInt(current.getAttribute('data-index'));
+		current.classList.remove('current');
+		if(list[index + 1] !== null){			
+			list[index + 1].classList.add('current');
+			let newIndex = list[index+1].getAttribute('data-index');
+			displayModal(newIndex);
+			
+		}
+		
+				
+
+
+		//remove the current class from current card
+
+		// add it to the next card that doesn't have hideCard
+
+
+
+
+		/*
+		for(let i = 0; i < list.length; i++){ //looks at the next card
 			if(list[i].classList.contains('current')){
 				list[i].classList.remove('current');
-				list[i + 1].classList.add('current');
-				 let index = list[i+1].getAttribute('data-index');
-				console.log(list[i+1].getAttribute('data-index'));
-				displayModal(index);
+
+					if()
+					list[i + 1].classList.add('current');
+				 	let index = list[i + 1].getAttribute('data-index');
+					
+					displayModal(index);
+			
+			
 
 			}
 
-		}
+		}*/
 
-		console.log(list);
+		
 
 		
 	/*	if(!nextEl.classList.contains('hideCard')) {
