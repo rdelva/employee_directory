@@ -70,6 +70,7 @@ function displayModal(index){
 	`;
 
 	overlay.classList.remove("hidden");
+
 	modalContainer.innerHTML = modalHTML;
 
 
@@ -83,20 +84,18 @@ gridContainer.addEventListener('click', e => {
 
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
-		displayModal(index);
-		directionalArrows(index);
+		displayModal(index);		
 		const cards = document.querySelectorAll('.card');
+		
+		//scrubs to see if another item has the current marker.
 
-		//scrubs list to see if a card was selected
 		for(let i=0; i < cards.length; i++){
-			if(cards[i].classList.contains('current')){
+			if(cards[i].classList.contains('current') ){
 				cards[i].classList.remove('current');
 			}
 		}
-	
+		// if no card was selected
 		card.classList.add('current');
-		
-
 	}
 
 });
@@ -108,86 +107,69 @@ function directionalArrows(){
 	const next = document.getElementById('right');
 	const prev  = document.getElementById('left');
 	//let currentCard = parseInt(index);
+
  	
 	next.addEventListener('click', (e) => {
 	
-		let card = document.querySelectorAll('.card');
-	
-		let list = [];
-
-
-		//Builds the  list of displayed cards
-		for(let i = 0; i < card.length; i++){
-			if(!card[i].classList.contains('hideCard')){
-				list.push(card[i]);
-			}
-			
-		}
-
-		//find the current card and get the index number for the card
+		let cards = document.querySelectorAll('.card');		
 		let current = document.querySelector('.current');
-		let index  = parseInt(current.getAttribute('data-index'));
-		current.classList.remove('current');
-		if(list[index + 1] !== null){			
-			list[index + 1].classList.add('current');
-			let newIndex = list[index+1].getAttribute('data-index');
-			displayModal(newIndex);
-			
-		}
-		
-				
+		let prevCurr = current;
+		let displayedCards = [];
+		let oldIndex = '';
 
 
-		//remove the current class from current card
-
-		// add it to the next card that doesn't have hideCard
-
-
-
-
-		/*
-		for(let i = 0; i < list.length; i++){ //looks at the next card
-			if(list[i].classList.contains('current')){
-				list[i].classList.remove('current');
-
-					if()
-					list[i + 1].classList.add('current');
-				 	let index = list[i + 1].getAttribute('data-index');
-					
-					displayModal(index);
-			
-			
-
+		//Cards that are displayed - do i need to make this async?
+		for(let i=0; i < cards.length; i++){
+			if(!cards[i].classList.contains('hideCard')){
+				displayedCards.push(cards[i]); 
 			}
+		}
 
-		}*/
+		current.classList.remove('current');
 
+		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
+		oldIndex+=1;
+
+		displayedCards[oldIndex].classList.add('current');
+		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
+		
 		
 
 		
-	/*	if(!nextEl.classList.contains('hideCard')) {
-			current.classList.remove('current');
-			nextEl.classList.add('current');	
-			displayModal(nextEl.getAttribute('data-index'));
-		} else {
-			nextEl.next;
-		}*/
 
-//get the index starting point based on which item i click on. 
-// check the next item over if it does have the hide card. go to the next one
-// if it doesn't have hide card send the value to display modal and end the loop
+		displayModal(oldIndex);
+			
 
 	
-
-		
-		
-	
-		
 	});
 
 
 	prev.addEventListener('click', (e) => {
 		
+		let cards = document.querySelectorAll('.card');		
+		let current = document.querySelector('.current');
+		let prevCurr = current;
+		let displayedCards = [];
+		let oldIndex = '';
+
+		//Cards that are displayed - do i need to make this async?
+		for(let i=0; i < cards.length; i++){
+			if(!cards[i].classList.contains('hideCard')){
+				displayedCards.push(cards[i]); 
+			}
+		}
+
+		current.classList.remove('current');
+
+		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
+		oldIndex-=1;
+
+		displayedCards[oldIndex].classList.add('current');
+		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
+
+		
+		displayModal(oldIndex);
+
 	});
 
 
