@@ -5,7 +5,8 @@ const  gridContainer = document.querySelector("#grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose  = document.querySelector(".modal-close");
-
+const prev = document.querySelector('#left img');
+const next = document.querySelector('#right img');
 
 fetch(urlAPI)
 	.then(res => res.json())
@@ -71,7 +72,28 @@ function displayModal(index){
 
 	overlay.classList.remove("hidden");
 
+	let cardNumber = parseInt(index); 
+
+	if(cardNumber === 0){
+		prev.style.display = 'none';
+
+
+	} else {
+		prev.style.display = 'block';
+
+	}
+
+
+
 	modalContainer.innerHTML = modalHTML;
+
+	let cards = document.querySelectorAll('.card');
+
+
+
+
+	
+
 
 
 }
@@ -79,12 +101,15 @@ function displayModal(index){
 
 gridContainer.addEventListener('click', e => {
 
+	
+
 	//only targets the cards in employee directory
 	if(e.target !== gridContainer){
 
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
 		displayModal(index);		
+		//directionalArrows(index);
 		const cards = document.querySelectorAll('.card');
 		
 		//scrubs to see if another item has the current marker.
@@ -92,17 +117,19 @@ gridContainer.addEventListener('click', e => {
 		for(let i=0; i < cards.length; i++){
 			if(cards[i].classList.contains('current') ){
 				cards[i].classList.remove('current');
-			}
+			}	
 		}
 		// if no card was selected
 		card.classList.add('current');
+
+
 	}
 
 });
 
 //Directional Arrows
 
-function directionalArrows(){
+function directionalArrows(index){
 
 	const next = document.getElementById('right');
 	const prev  = document.getElementById('left');
@@ -131,12 +158,9 @@ function directionalArrows(){
 		oldIndex+=1;
 
 		displayedCards[oldIndex].classList.add('current');
-		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
-		
-		
+		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index')); 
 
 		
-
 		displayModal(oldIndex);
 			
 
