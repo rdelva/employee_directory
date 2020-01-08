@@ -217,6 +217,10 @@ p{
 	display: none;
 }
 
+.arrow {
+	width:100%;
+}
+
 .arrow img {
 	width:100px;
 	padding-top:50px;
