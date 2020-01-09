@@ -75,17 +75,20 @@ function displayModal(index){
 
 	overlay.classList.remove("hidden");
 
+
+	// Hide the arrows for the first and last card
 	const cards = document.querySelectorAll('.card');
 	let cardNumber = parseInt(index); 
 
+	// Hide left arrow for the first card
 	if(cardNumber === 0){
 		prev.style.display = 'none';
 	} else {
 		prev.style.display = 'block';
 	}
 
-
-	if(cardNumber === cards.length -1){
+	// Hide right arrow for last card
+	if(cardNumber === cards.length - 1){
 		next.style.display = 'none';
 	} else {
 		next.style.display = 'block';
@@ -94,22 +97,11 @@ function displayModal(index){
 
 
 	modalContainer.innerHTML = modalHTML;
-
-
-
-
-
-
-	
-
-
-
+ 
 }
 
 
 gridContainer.addEventListener('click', e => {
-
-	
 
 	//only targets the cards in employee directory
 	if(e.target !== gridContainer){
@@ -117,7 +109,7 @@ gridContainer.addEventListener('click', e => {
 		const card = e.target.closest(".card");
 		const index = card.getAttribute("data-index");
 		displayModal(index);		
-		//directionalArrows(index);
+		
 		const cards = document.querySelectorAll('.card');
 		
 		//scrubs to see if another item has the current marker.
@@ -127,7 +119,7 @@ gridContainer.addEventListener('click', e => {
 				cards[i].classList.remove('current');
 			}	
 		}
-		// if no card was selected
+		// if no card was selected prior add the current class
 		card.classList.add('current');
 
 
@@ -137,15 +129,9 @@ gridContainer.addEventListener('click', e => {
 
 //Directional Arrows
 
-function directionalArrows(index){
+function directionalArrows(){
 
 
-	let currentCard = parseInt(index);
-
-	if(currentCard === 0){
-		prev.style.display = 'none';
-	}
- 	
 	next.addEventListener('click', (e) => {
 	
 		let cards = document.querySelectorAll('.card');		
@@ -173,13 +159,7 @@ function directionalArrows(index){
 			displayModal(oldIndex);
 
 		}
-		
 
-		
-		
-			
-
-	
 	});
 
 
@@ -223,12 +203,34 @@ modalClose.addEventListener('click', (e) => {
 
 
 
+function filteredCards(){
+	const cards = document.getElementsByClassName('card');
+	let displayedCards = [];
+	let employeesHTML = "";
+	//Cards that are displayed - do i need to make this async?
+	for(let i=0; i < cards.length; i++){
+		if(!cards[i].classList.contains('hideCard')){
+			displayedCards.push(cards[i]); 
+		}
+	}
+	
+	gridContainer.innerHTML = '';
+
+
+	for(let i = 0; i < displayedCards.length; i++){
+
+		employeesHTML += displayedCards[i].outerHTML;
+		//console.log(employeesHTML);
+	}
+
+ 	gridContainer.innerHTML = employeesHTML;
+
+}
+
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
-
-	const cards = document.getElementsByClassName('card');
-				
+	const cards = document.getElementsByClassName('card');				
 
 	let list = [];
 	let result = ''; 
@@ -258,6 +260,9 @@ function searchEmployee(){
 		}
 
 
+		if(result !== ''){
+			filteredCards();
+		}
 
 	});
 }
@@ -268,6 +273,6 @@ function searchEmployee(){
 	
 
 
-
+filteredCards();
 directionalArrows();
 searchEmployee();
