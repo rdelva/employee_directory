@@ -5,8 +5,8 @@ const  gridContainer = document.querySelector("#grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose  = document.querySelector(".modal-close");
-const prev = document.querySelector('#left img');
 const next = document.querySelector('#right img');
+const prev  = document.querySelector('#left img');
 
 fetch(urlAPI)
 	.then(res => res.json())
@@ -42,6 +42,9 @@ function displayEmployees(employeeData){
 	`;
 
 
+	
+
+
 	});
 
 
@@ -72,6 +75,9 @@ function displayModal(index){
 
 	overlay.classList.remove("hidden");
 
+	const cards = document.querySelectorAll('.card');
+
+
 	let cardNumber = parseInt(index); 
 
 	if(cardNumber === 0){
@@ -84,10 +90,9 @@ function displayModal(index){
 	}
 
 
-
 	modalContainer.innerHTML = modalHTML;
 
-	let cards = document.querySelectorAll('.card');
+
 
 
 
@@ -131,10 +136,12 @@ gridContainer.addEventListener('click', e => {
 
 function directionalArrows(index){
 
-	const next = document.getElementById('right');
-	const prev  = document.getElementById('left');
-	//let currentCard = parseInt(index);
 
+	let currentCard = parseInt(index);
+
+	if(currentCard === 0){
+		prev.style.display = 'none';
+	}
  	
 	next.addEventListener('click', (e) => {
 	
@@ -152,16 +159,21 @@ function directionalArrows(index){
 			}
 		}
 
-		current.classList.remove('current');
 
 		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
 		oldIndex+=1;
 
-		displayedCards[oldIndex].classList.add('current');
-		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index')); 
+		if(oldIndex !== cards.length){
+			current.classList.remove('current');
+			displayedCards[oldIndex].classList.add('current');
+			oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index')); 
+			displayModal(oldIndex);
+
+		}
+		
 
 		
-		displayModal(oldIndex);
+		
 			
 
 	
@@ -172,6 +184,7 @@ function directionalArrows(index){
 		
 		let cards = document.querySelectorAll('.card');		
 		let current = document.querySelector('.current');
+		const prev = document.querySelector('.left');
 		let prevCurr = current;
 		let displayedCards = [];
 		let oldIndex = '';
@@ -183,16 +196,16 @@ function directionalArrows(index){
 			}
 		}
 
-		current.classList.remove('current');
 
 		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
 		oldIndex-=1;
+		if(oldIndex >  -1){
+			current.classList.remove('current');
 
-		displayedCards[oldIndex].classList.add('current');
-		oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
-
-		
-		displayModal(oldIndex);
+			displayedCards[oldIndex].classList.add('current'); // adds the current class
+			oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
+			displayModal(oldIndex);
+		}
 
 	});
 
