@@ -203,34 +203,12 @@ modalClose.addEventListener('click', (e) => {
 
 
 
-function filteredCards(){
-	const cards = document.getElementsByClassName('card');
-	let displayedCards = [];
-	let employeesHTML = "";
-	//Cards that are displayed - do i need to make this async?
-	for(let i=0; i < cards.length; i++){
-		if(!cards[i].classList.contains('hideCard')){
-			displayedCards.push(cards[i]); 
-		}
-	}
-	
-	gridContainer.innerHTML = '';
-
-
-	for(let i = 0; i < displayedCards.length; i++){
-
-		employeesHTML += displayedCards[i].outerHTML;
-		//console.log(employeesHTML);
-	}
-
- 	gridContainer.innerHTML = employeesHTML;
-
-}
 
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
 	const cards = document.getElementsByClassName('card');				
+	let savedList = cards;
 
 	let list = [];
 	let result = ''; 
@@ -241,38 +219,68 @@ function searchEmployee(){
 		//Note wanted to try and use filter for this. Was uncessful need to ask for help
 		//better way to use classes instead replying on style
 
-		for(let i = 0; i < cards.length; i++){
-
-			 let cardName = cards[i].querySelector('.name').innerHTML.toLowerCase();
-			  let match = cardName.includes(result);	
-			
-			 if(match) {
-			 	if(cards[i].classList.contains('hideCard')){
-			 			cards[i].classList.remove('hideCard');
-			 	}			 
-				 
-			} else {				
-				
-				cards[i].classList.add('hideCard');
-					
-			}
-
-		}
-
-
 		if(result !== ''){
-			filteredCards();
+			for(let i = 0; i < cards.length; i++){
+
+				let cardName = cards[i].querySelector('.name').innerHTML.toLowerCase();
+				let match = cardName.includes(result);	
+				
+				if(match) {
+				 	list.push(cards[i]);			 					 
+				}
+
+			}
+	
+		filteredCards(list);
+
+		} else {
+			list = [];
 		}
+
+
+
+		/*if(result !== '' || result !== undefined){
+			filteredCards(list);
+		} */
 
 	});
 }
 
 
+function filteredCards(list){
+
+
+	//const cards = document.getElementsByClassName('card');
+	//let displayedCards = [];
+	let cards = list;
+	console.log(cards);
+	console.log(cards.length);
+	let employeesHTML = "";
+	//Cards that are displayed - do i need to make this async?
+	/*for(let i=0; i < cards.length; i++){
+		if(!cards[i].classList.contains('hideCard')){
+			displayedCards.push(cards[i]); 
+		}
+	}*/
+	
+	
+
+
+	for(let i = 0; i < cards.length; i++){
+
+		employeesHTML += cards[i].outerHTML;
+		//console.log(employeesHTML);
+	}
+	gridContainer.innerHTML = '';
+ 	gridContainer.innerHTML = employeesHTML;
+
+}
 
 
 	
 
 
-filteredCards();
+
 directionalArrows();
 searchEmployee();
+filteredCards();
