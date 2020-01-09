@@ -207,17 +207,25 @@ modalClose.addEventListener('click', (e) => {
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
-	const cards = document.getElementsByClassName('card');				
-	let savedList = cards;
+	const cards = document.getElementsByClassName('card');	
+		let savedList = cards;			
+	console.log(cards);
+
+/* create another container for filtered results. everytime you use the filter  hide the data in grid container but use to run your searches.
+	if the text bar is empty or not in focus (code in the not focus part)
+	if there is no value show the default container. 
+	if there is a value check against the grid contianer and then display it. 
+*/
 
 	let list = [];
 	let result = ''; 
 	search.addEventListener('keyup', e => {
+		
 
+			
 		result = search.value.toLowerCase();
 		
-		//Note wanted to try and use filter for this. Was uncessful need to ask for help
-		//better way to use classes instead replying on style
+		//if value is entered push it into an array
 
 		if(result !== ''){
 			for(let i = 0; i < cards.length; i++){
@@ -227,53 +235,42 @@ function searchEmployee(){
 				
 				if(match) {
 				 	list.push(cards[i]);			 					 
-				}
+				} 
 
 			}
-	
-		filteredCards(list);
+
+				filteredCards(list);	
 
 		} else {
-			list = [];
+					
+					filteredCards(savedList);
+					console.log(savedList);
+					
 		}
-
-
-
-		/*if(result !== '' || result !== undefined){
-			filteredCards(list);
-		} */
-
 	});
+	filteredCards(savedList);
 }
 
 
 function filteredCards(list){
 
-
-	//const cards = document.getElementsByClassName('card');
-	//let displayedCards = [];
 	let cards = list;
-	console.log(cards);
-	console.log(cards.length);
+	
 	let employeesHTML = "";
-	//Cards that are displayed - do i need to make this async?
-	/*for(let i=0; i < cards.length; i++){
-		if(!cards[i].classList.contains('hideCard')){
-			displayedCards.push(cards[i]); 
+	
+	if(cards !== undefined){
+		
+		for(let i = 0; i < cards.length; i++){
+
+			employeesHTML += cards[i].outerHTML;
+			//console.log(employeesHTML);
 		}
-	}*/
 	
-	
+		
 
-
-	for(let i = 0; i < cards.length; i++){
-
-		employeesHTML += cards[i].outerHTML;
-		//console.log(employeesHTML);
 	}
-	gridContainer.innerHTML = '';
- 	gridContainer.innerHTML = employeesHTML;
-
+		gridContainer.innerHTML = '';
+	 	gridContainer.innerHTML = employeesHTML;
 }
 
 
