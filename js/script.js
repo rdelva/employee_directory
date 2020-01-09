@@ -76,18 +76,21 @@ function displayModal(index){
 	overlay.classList.remove("hidden");
 
 	const cards = document.querySelectorAll('.card');
-
-
 	let cardNumber = parseInt(index); 
 
 	if(cardNumber === 0){
 		prev.style.display = 'none';
-
-
 	} else {
 		prev.style.display = 'block';
-
 	}
+
+
+	if(cardNumber === cards.length -1){
+		next.style.display = 'none';
+	} else {
+		next.style.display = 'block';
+	}
+
 
 
 	modalContainer.innerHTML = modalHTML;
