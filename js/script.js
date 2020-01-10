@@ -203,81 +203,78 @@ modalClose.addEventListener('click', (e) => {
 
 
 
+function filteredCards(){
+	const cards = document.getElementsByClassName('card');
+	let displayedCards = [];
+	let employeesHTML = "";
+	//Cards that are displayed - do i need to make this async?
+	for(let i=0; i < cards.length; i++){
+		if(!cards[i].classList.contains('hideCard')){
+			displayedCards.push(cards[i]); 
+		}
+	}
+	
+	gridContainer.innerHTML = '';
+
+
+	for(let i = 0; i < displayedCards.length; i++){
+
+		employeesHTML += displayedCards[i].outerHTML;
+		//console.log(employeesHTML);
+	}
+
+ 	gridContainer.innerHTML = employeesHTML;
+
+}
 
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
-	const cards = document.getElementsByClassName('card');	
-		let savedList = cards;			
-	console.log(cards);
-
-/* create another container for filtered results. everytime you use the filter  hide the data in grid container but use to run your searches.
-	if the text bar is empty or not in focus (code in the not focus part)
-	if there is no value show the default container. 
-	if there is a value check against the grid contianer and then display it. 
-*/
+	const cards = document.getElementsByClassName('card');				
 
 	let list = [];
 	let result = ''; 
 	search.addEventListener('keyup', e => {
-		
 
-			
 		result = search.value.toLowerCase();
 		
-		//if value is entered push it into an array
+		//Note wanted to try and use filter for this. Was uncessful need to ask for help
+		//better way to use classes instead replying on style
 
-		if(result !== ''){
-			for(let i = 0; i < cards.length; i++){
-
-				let cardName = cards[i].querySelector('.name').innerHTML.toLowerCase();
-				let match = cardName.includes(result);	
-				
-				if(match) {
-				 	list.push(cards[i]);			 					 
-				} 
-
-			}
-
-				filteredCards(list);	
-
-		} else {
-					
-					filteredCards(savedList);
-					console.log(savedList);
-					
-		}
-	});
-	filteredCards(savedList);
-}
-
-
-function filteredCards(list){
-
-	let cards = list;
-	
-	let employeesHTML = "";
-	
-	if(cards !== undefined){
-		
 		for(let i = 0; i < cards.length; i++){
 
-			employeesHTML += cards[i].outerHTML;
-			//console.log(employeesHTML);
-		}
-	
-		
+			 let cardName = cards[i].querySelector('.name').innerHTML.toLowerCase();
+			  let match = cardName.includes(result);	
+			
+			 if(match) {
+			 	if(cards[i].classList.contains('hideCard')){
+			 			cards[i].classList.remove('hideCard');
+			 	}			 
+				 
+			} else {				
+				
+				cards[i].classList.add('hideCard');
+					
+			}
 
-	}
-		gridContainer.innerHTML = '';
-	 	gridContainer.innerHTML = employeesHTML;
+		}
+
+
+		if(result !== ''){
+			filteredCards();
+		} else {
+			
+		}
+
+	});
 }
 
 
+
+
 	
 
 
-
+filteredCards();
 directionalArrows();
 searchEmployee();
-filteredCards();
