@@ -152,34 +152,6 @@ function directionalArrows(){
 		}
 
 
-
-		/*
-		let cards = document.querySelectorAll('.card');		
-		let current = document.querySelector('.current');
-		let prevCurr = current;
-		let displayedCards = [];
-		let oldIndex = '';
-
-
-		//Cards that are displayed - do i need to make this async?
-		for(let i=0; i < cards.length; i++){
-			if(!cards[i].classList.contains('hideCard')){
-				displayedCards.push(cards[i]); 
-			}
-		}
-
-
-		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
-		oldIndex+=1;
-
-		if(oldIndex !== cards.length){
-			current.classList.remove('current');
-			displayedCards[oldIndex].classList.add('current');
-			oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index')); 
-			displayModal(oldIndex);
-
-		}
-	*/
 	});
 
 
@@ -207,28 +179,6 @@ function directionalArrows(){
 		}
 
 
-
-
-		/*let displayedCards = [];
-		let oldIndex = '';
-
-		//Cards that are displayed - do i need to make this async?
-		for(let i=0; i < cards.length; i++){
-			if(!cards[i].classList.contains('hideCard')){
-				displayedCards.push(cards[i]); 
-			}
-		}
-
-
-		oldIndex = parseInt(prevCurr.getAttribute('data-index'));
-		oldIndex-=1;
-		if(oldIndex >  -1){
-			current.classList.remove('current');
-
-			displayedCards[oldIndex].classList.add('current'); // adds the current class
-			oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
-			displayModal(oldIndex);
-		}*/
 
 	});
 
@@ -260,8 +210,7 @@ function searchEmployee(){
 
 		result = search.value.toLowerCase();
 		
-		//Note wanted to try and use filter for this. Was uncessful need to ask for help
-		//better way to use classes instead replying on style
+
 
 		for(let i = 0; i < cards.length; i++){
 
