@@ -58,6 +58,7 @@ function displayModal(index){
 	let { name, dob, phone, email, location: { city, street, state, postcode}, picture } = employees[index];
 
 	let date = new Date(dob.date);
+	formattedYear = date.getFullYear().toString().substring(1,3);
 
 	const modalHTML = `
 		<img class ="avatar" src="${picture.large} " />
@@ -67,8 +68,8 @@ function displayModal(index){
 			<p class="address">${city}</p>
 			<hr/>
 			<p>${phone}</p>
-			<p class="address"> ${street.number} ${street.name} , ${state} ${postcode}</p>
-			<p>Birthday: ${date.getMonth()}/${date.getDate()}/ ${date.getFullYear()}</p>
+			<p class="address"> ${street.number} ${street.name}, ${state} ${postcode}</p>
+			<p>Birthday: ${date.getMonth()}/${date.getDate()}/${formattedYear}</p>
 		</div>
 
 	`;
