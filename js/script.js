@@ -79,20 +79,24 @@ function displayModal(index){
 
 	// Hide the arrows for the first and last card
 	const cards = document.querySelectorAll('.card');
+
+	// will only target the arrow but not the space
+	const right = document.querySelector('#right img');
+	const left = document.querySelector('#left img');
 	let cardNumber = parseInt(index); 
 
 	// Hide left arrow for the first card
 	if(cardNumber === 0){
-		prev.style.display = 'none';
+		left.style.display = 'none';
 	} else {
-		prev.style.display = 'block';
+		left.style.display = 'block';
 	}
 
 	// Hide right arrow for last card
 	if(cardNumber === cards.length - 1){
-		next.style.display = 'none';
+		right.style.display = 'none';
 	} else {
-		next.style.display = 'block';
+		right.style.display = 'block';
 	}
 
 
