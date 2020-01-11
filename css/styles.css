@@ -65,12 +65,11 @@ form {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	width: 100%;
+
 }
 
 .modal-content {
 
-	margin:20px 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -80,11 +79,17 @@ form {
 
 	font-size: .75em;
 	color: #b2b5b8;
+	padding: 5px 0;
 
 }
 
 .modal-content hr {
-	width: 80%;
+	height: 1px;
+    color: #b2b5b8;
+    background: #b2b5b8;
+    margin: 10px 0;
+    font-size: 0;
+    border: 0
 }
 
 .modal-content .avatar {
@@ -217,18 +222,27 @@ p{
 	display: none;
 }
 
+.modal-content h2{
+	font-size:1em;
+	padding: 10px 0;
+}
+
+.modal-content .email , .modal-content .address {
+	font-size: .80em;
+	color:#b2b5b8;
+	padding: 3px 0;
+}
+
+
+
 .arrow {
-	width:100%;
+	width:10%;
 }
 
 .arrow img {
-	width:100px;
-	padding-top:50px;
-	height:100px;
+	width:50px;	
+	height:50px;
 	cursor: pointer;
-
-
-
 }
 
 
