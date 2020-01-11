@@ -5,8 +5,8 @@ const  gridContainer = document.querySelector("#grid-container");
 const overlay = document.querySelector(".overlay");
 const modalContainer = document.querySelector(".modal-content");
 const modalClose  = document.querySelector(".modal-close");
-const next = document.querySelector('#right img');
-const prev  = document.querySelector('#left img');
+const next = document.querySelector('#right');
+const prev  = document.querySelector('#left');
 
 fetch(urlAPI)
 	.then(res => res.json())

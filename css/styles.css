@@ -237,6 +237,8 @@ p{
 
 .arrow {
 	width:10%;
+	cursor: pointer;
+	width:50px;
 }
 
 .arrow img {
