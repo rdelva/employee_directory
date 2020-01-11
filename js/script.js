@@ -133,7 +133,27 @@ function directionalArrows(){
 
 
 	next.addEventListener('click', (e) => {
-	
+		
+		let cards = document.querySelectorAll('.card');		
+		let current = document.querySelector('.current');
+		let prevCurr = current;
+		let currentIndex = "";
+		let newIndex = "";
+		
+		currentIndex = parseInt(current.getAttribute('data-index'));
+		currentIndex+=1;
+
+
+		if(currentIndex !== cards.length){
+			current.classList.remove('current');
+			cards[currentIndex].classList.add('current');
+			newIndex = parseInt(cards[currentIndex].getAttribute('data-index'));
+			displayModal(newIndex);
+		}
+
+
+
+		/*
 		let cards = document.querySelectorAll('.card');		
 		let current = document.querySelector('.current');
 		let prevCurr = current;
@@ -159,7 +179,7 @@ function directionalArrows(){
 			displayModal(oldIndex);
 
 		}
-
+	*/
 	});
 
 
@@ -169,7 +189,27 @@ function directionalArrows(){
 		let current = document.querySelector('.current');
 		const prev = document.querySelector('.left');
 		let prevCurr = current;
-		let displayedCards = [];
+
+		let currentIndex = "";
+		let newIndex = "";
+		
+		currentIndex = parseInt(current.getAttribute('data-index'));
+		currentIndex-=1;
+
+
+
+
+		if(currentIndex >  -1){
+			current.classList.remove('current');
+			cards[currentIndex].classList.add('current');
+			newIndex = parseInt(cards[currentIndex].getAttribute('data-index'));
+			displayModal(newIndex);
+		}
+
+
+
+
+		/*let displayedCards = [];
 		let oldIndex = '';
 
 		//Cards that are displayed - do i need to make this async?
@@ -188,7 +228,7 @@ function directionalArrows(){
 			displayedCards[oldIndex].classList.add('current'); // adds the current class
 			oldIndex = parseInt(displayedCards[oldIndex].getAttribute('data-index'));
 			displayModal(oldIndex);
-		}
+		}*/
 
 	});
 
@@ -204,33 +244,15 @@ modalClose.addEventListener('click', (e) => {
 
 
 function filteredCards(){
-	const cards = document.getElementsByClassName('card');
-	let displayedCards = [];
-	let employeesHTML = "";
-	//Cards that are displayed - do i need to make this async?
-	for(let i=0; i < cards.length; i++){
-		if(!cards[i].classList.contains('hideCard')){
-			displayedCards.push(cards[i]); 
-		}
-	}
 	
-	gridContainer.innerHTML = '';
-
-
-	for(let i = 0; i < displayedCards.length; i++){
-
-		employeesHTML += displayedCards[i].outerHTML;
-		//console.log(employeesHTML);
-	}
-
- 	gridContainer.innerHTML = employeesHTML;
-
 }
 
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
-	const cards = document.getElementsByClassName('card');				
+
+	const cards = document.getElementsByClassName('card');
+				
 
 	let list = [];
 	let result = ''; 
@@ -260,11 +282,6 @@ function searchEmployee(){
 		}
 
 
-		if(result !== ''){
-			filteredCards();
-		} else {
-			
-		}
 
 	});
 }
@@ -275,6 +292,6 @@ function searchEmployee(){
 	
 
 
-filteredCards();
+
 directionalArrows();
 searchEmployee();
