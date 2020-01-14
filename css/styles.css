@@ -34,7 +34,7 @@ form {
 }
 
 #submit:hover{
-	transition-property: background-color color;
+	transition-property: background-color, color;
 	background-color: #4a4a4a;
 	color: #fff;
 	transition-duration: .8s;
@@ -86,8 +86,8 @@ form {
 
 .modal-content hr {
 	height: 1px;
-    color: #b2b5b8;
-    background: #b2b5b8;
+    color: #b2b5b8; /* covers for Firefox and Chrome */
+    background: #b2b5b8; /* covers for Firefox and Chrome */
     margin: 10px 0;
     font-size: 0;
     border: 0
