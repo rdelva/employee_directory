@@ -141,7 +141,6 @@ function directionalArrows(){
 		
 		let cards = document.querySelectorAll('.card');		
 		let current = document.querySelector('.current');
-		let prevCurr = current;
 		let currentIndex = "";
 		let newIndex = "";
 		
@@ -164,9 +163,6 @@ function directionalArrows(){
 		
 		let cards = document.querySelectorAll('.card');		
 		let current = document.querySelector('.current');
-		const prev = document.querySelector('.left');
-		let prevCurr = current;
-
 		let currentIndex = "";
 		let newIndex = "";
 		
@@ -230,36 +226,11 @@ function searchEmployee(){
 					
 			}
 
-		}
-
-			/*
-		for(let i=0; i < cards.length; i++){
-			if(!cards[i].classList.contains('hideCard')){
-				list.push(cards[i]);
-			}
-
-		}
-
-		console.log(list.length);
-
-		// if number of cards not even adjust the spacing
-		if(list.length % 2 !== 0){
-
-			gridContainer.style.justifyContent = 'space-around';
-			console.log(list.length);
-		}*/
-		
+		}	
 	});
 
 
 }
-
-
-
-
-	
-
-
 
 directionalArrows();
 searchEmployee();
