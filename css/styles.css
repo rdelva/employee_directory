@@ -257,6 +257,7 @@ p{
 		flex-direction: row;
 		flex-wrap: wrap;
 		justify-content: space-between; 	
+		
 	}
 
 	.card  {
@@ -266,20 +267,30 @@ p{
 	}
 
 	.card img {	
-		width:100px;
-		height:100px;		
+		width:80px;
+		height:80px;		
 	}
 
 }
 
 
 @media (min-width: 1024px){
+
+	#grid-container {
+		justify-content: inherit;
+	}	
+
 	.wrapper {
 		max-width: 1024px;
 	}
 
 	.card {
-		width:33%;
+		width:31.8%;
+		margin-right: .90em;
 	}
+
+
+
+
 
 }

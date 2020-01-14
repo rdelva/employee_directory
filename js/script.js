@@ -198,18 +198,15 @@ modalClose.addEventListener('click', (e) => {
 
 
 
-function filteredCards(){
-	
-}
 
 
 function searchEmployee(){
 	let search = document.querySelector('#search');
-
+	let list = [];
 	const cards = document.getElementsByClassName('card');
 				
 
-	let list = [];
+
 	let result = ''; 
 	search.addEventListener('keyup', e => {
 
@@ -235,9 +232,26 @@ function searchEmployee(){
 
 		}
 
+			/*
+		for(let i=0; i < cards.length; i++){
+			if(!cards[i].classList.contains('hideCard')){
+				list.push(cards[i]);
+			}
 
+		}
 
+		console.log(list.length);
+
+		// if number of cards not even adjust the spacing
+		if(list.length % 2 !== 0){
+
+			gridContainer.style.justifyContent = 'space-around';
+			console.log(list.length);
+		}*/
+		
 	});
+
+
 }
 
 
